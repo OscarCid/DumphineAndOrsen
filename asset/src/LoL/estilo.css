@@ -1,19 +1,5 @@
 @charset "utf-8";
 
-#player
-{
-    position:absolute;
-    width:100px;
-    height:100px;
-    left:50%;
-    top:50%;
-    margin-left:-50px;
-    margin-top:-50px;
-}
-#contenedorPlayer
-{
-    float: left;
-}
 #userData
 {
     margin-top: -15px;
@@ -80,3 +66,12 @@ grouplimit{
 
 .input-mini { width: 60px; } .input-small { width: 90px; } .input-medium { width: 150px; } .input-large { width: 210px; } .input-xlarge { width: 270px; } .input-xxlarge { width: 530px; }
 
+/* coloca color verde a LoL */
+.active a{
+    color: #217419 !important;
+}
+
+
+.navbar .brand, .navbar .nav > li > a:hover {
+    color: red;
+}

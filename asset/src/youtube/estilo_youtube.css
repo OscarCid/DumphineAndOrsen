@@ -1,0 +1,83 @@
+body
+{
+    background-color: black;
+}
+
+/* coloca color rojo a youtube */
+.active a{
+    color: red !important;
+}
+
+
+.navbar .brand, .navbar .nav > li > a:hover {
+    color: #217419;
+}
+
+#lista
+{
+
+}
+
+#contenidoLista
+{
+    height: 100%;
+    width: 100%;
+    padding: 10px 10px 10px 10px;
+    background-color: #0f0f0f;
+}
+
+.playlist
+{
+    /* Color de fondo div */
+    background-color: #232325;
+    /* Ancho de div automatico */
+    width: auto;
+    /* alto de div */
+    height: 40px;
+    /* margen entre div div */
+    margin-bottom: 1px;
+    /* Color del texto dentro del div */
+    color: rgb(164, 159, 161);
+    /* centrado del texto dentro del div las 3 lineas */
+    text-align: left;
+    vertical-align: middle;
+    line-height: 40px;
+    /* borde interno dentro del div */
+    padding-left: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dibujito
+{
+    float: right;
+    vertical-align: middle;
+    line-height: 40px;
+    margin-right: 10px;
+
+}
+
+.playlist:hover
+{
+    /* Color de fondo div */
+    background-color: #38383b;
+}
+
+.text
+{
+    margin-left: 10px;
+}
+
+.box
+{
+    background: #ccc;
+    border: 1px solid;
+    margin: 0 0 0 10px;
+}
+
+.shadow {
+    -moz-box-shadow:    inset 0 0 10px #000000;
+    -webkit-box-shadow: inset 0 0 10px #000000;
+    box-shadow:         inset 0 0 10px #000000;
+}
