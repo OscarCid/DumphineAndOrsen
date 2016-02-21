@@ -84,15 +84,15 @@ function onPlayerReady(event) {
     event.target.pauseVideo();
 }
 
-$('.playlist').on('click',function(){
+$('.playlist').click(function(){
     $('.playlist').css('background', '');
     $('.playlist').find('.play').hide();
     $('.playlist').find('.pause').hide();
     $(this).css('background', '#0A3811');
-    var id = $(this).attr('video');
     $(this).find('.play').css('color', 'green');
     $(this).find('.play').show();
     $(this).find('.pause').show();
+    var id = $(this).attr('video');
     cargarVideo(id);
 });
 
@@ -111,3 +111,10 @@ $( document ).ready(function() {
     $('.play').hide();
 });
 
+(function($){
+    $(window).load(function(){
+        $("#contenidoLista").mCustomScrollbar({
+            theme:"rounded"
+        });
+    });
+})(jQuery);

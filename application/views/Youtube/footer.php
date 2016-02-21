@@ -4,6 +4,8 @@
 <script src="<?php echo base_url(); ?>/asset/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <!-- Script Youtube -->
 <script src="<?php echo base_url(); ?>/asset/src/youtube/youtube.js" type="text/javascript"></script>
+<!-- Script ScrollBar -->
+<script src="<?php echo base_url(); ?>/asset/src/scrollbar-plugin/jquery.mCustomScrollbar.js" type="text/javascript"></script>
 <script>
     $(function(){
         $("#menu_youtube").addClass("active");

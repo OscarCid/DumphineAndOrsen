@@ -7,5 +7,6 @@
     <link href="<?php echo base_url(); ?>/asset/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>/asset/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>/asset/src/youtube/estilo_youtube.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>/asset/src/scrollbar-plugin/jquery.mCustomScrollbar.css" rel="stylesheet">
 </head>
 <body>
