@@ -16,7 +16,7 @@ function onYouTubeIframeAPIReady() {
         height: '390',
         width: '100%',
         playerVars: { 'showinfo': 0, 'modestbranding': 1, 'rel': 0},
-        videoId: 'Ah_aYOGnQ_I',
+        videoId: '',
         events:
         {
             'onReady': onPlayerReady,
@@ -58,30 +58,12 @@ function onPlayerStateChange(event) {
         {
             $('.pause').css('color', '');
             $('.play').css('color', '');
+            $('.playlist').css('background', '');
             $('.pause').hide();
             $('.play').hide();
             break;
         }
     }
-    /*
-    if (event.data == YT.PlayerState.PLAYING)
-    {
-        $('.pause').css('color', '');
-        $('.play').css('color', 'green');
-    }
-    else
-    {
-        if (event.data == YT.PlayerState.PAUSED)
-        {
-            $('.pause').css('color', 'red');
-            $('.play').css('color', '');
-        }
-        else
-        {
-
-        }
-    }
-    */
 }
 
 
@@ -95,7 +77,6 @@ function onPlayerReady(event) {
                 jQuery('#lista').css('height', jQuery(this).width() * 9/16);
             });
         }
-
         setAspectRatio();
         jQuery(window).resize(setAspectRatio);
     });
@@ -105,10 +86,28 @@ function onPlayerReady(event) {
 
 $('.playlist').on('click',function(){
     $('.playlist').css('background', '');
+    $('.playlist').find('.play').hide();
+    $('.playlist').find('.pause').hide();
     $(this).css('background', '#0A3811');
     var id = $(this).attr('video');
-    $('.play').css('color', 'green');
-    $('.pause').show();
-    $('.play').show();
+    $(this).find('.play').css('color', 'green');
+    $(this).find('.play').show();
+    $(this).find('.pause').show();
     cargarVideo(id);
 });
+
+$('.play').on('click',function(){
+    player.playVideo();
+    event.stopPropagation();
+});
+
+$('.pause').on('click',function(){
+    player.pauseVideo();
+    event.stopPropagation();
+});
+
+$( document ).ready(function() {
+    $('.pause').hide();
+    $('.play').hide();
+});
+
