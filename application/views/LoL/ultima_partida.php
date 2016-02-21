@@ -1,0 +1,1 @@
+<center> Pagina ultima partida</center>

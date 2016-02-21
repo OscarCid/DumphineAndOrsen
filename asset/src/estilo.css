@@ -1,0 +1,82 @@
+@charset "utf-8";
+
+#player
+{
+    position:absolute;
+    width:100px;
+    height:100px;
+    left:50%;
+    top:50%;
+    margin-left:-50px;
+    margin-top:-50px;
+}
+#contenedorPlayer
+{
+    float: left;
+}
+#userData
+{
+    margin-top: -15px;
+    background-color: #9d9d9d;
+}
+
+#colorWinLoss
+{
+    border-radius: 8px 8px 8px 8px;
+    -moz-border-radius: 8px 8px 8px 8px;
+    -webkit-border-radius: 8px 8px 8px 8px;
+    border: 0px solid #000000;
+}
+
+#matchData
+{
+    background-color: gray;
+}
+
+
+.Division{
+    float: right;
+    width: 25px;
+    height: 25px;
+    border: 2px solid #000000;
+    margin-right: 150px;
+ }
+
+.fake_img{
+    display:inline-block;
+    margin: 1px 0.0001em;
+    border:1px solid #122b40;
+}
+
+/* css para tooltip items */
+unique {
+    color: darkorange;
+}
+
+passive {
+    color: #ff3c1d;
+}
+
+active {
+    color: royalblue;
+}
+
+nombreItem {
+    color: #4fe4ff;
+}
+flavorText {
+    color: #fdff38;
+    font-style: oblique;
+}
+
+stats{
+    color: limegreen;
+}
+
+grouplimit{
+    color: #9152e6;
+}
+
+
+.input-mini { width: 60px; } .input-small { width: 90px; } .input-medium { width: 150px; } .input-large { width: 210px; } .input-xlarge { width: 270px; } .input-xxlarge { width: 530px; }
+
