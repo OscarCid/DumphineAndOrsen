@@ -56,11 +56,12 @@ function onPlayerStateChange(event) {
         }
         case YT.PlayerState.ENDED:
         {
-            $('.pause').css('color', '');
-            $('.play').css('color', '');
             $('.playlist').css('background', '');
+            $('.playlist').css('text-shadow', '');
             $('.pause').hide();
             $('.play').hide();
+            $('.stop').hide();
+            document.title = 'Dumphine And Orsen | Youtube';
             break;
         }
     }
@@ -86,18 +87,24 @@ function onPlayerReady(event) {
 
 $('.playlist').click(function(){
     $('.playlist').css('background', '');
+    $('.playlist').css('text-shadow', '');
     $('.playlist').find('.play').hide();
     $('.playlist').find('.pause').hide();
+    $('.playlist').find('.stop').hide();
+    document.title = $(this).text();
     $(this).css('background', '#0A3811');
+    $(this).css('text-shadow', '0px 0px 7px #4AFF37');
     $(this).find('.play').css('color', 'green');
     $(this).find('.play').show();
     $(this).find('.pause').show();
+    $(this).find('.stop').show();
     var id = $(this).attr('video');
     cargarVideo(id);
 });
 
 $('.play').on('click',function(){
     player.playVideo();
+    alert($('.playlist > #cancion').length);
     event.stopPropagation();
 });
 
@@ -106,9 +113,21 @@ $('.pause').on('click',function(){
     event.stopPropagation();
 });
 
+$('.stop').on('click',function(){
+    player.stopVideo();
+    $('.playlist').css('background', '');
+    $('.playlist').css('text-shadow', '');
+    document.title = 'Dumphine And Orsen | Youtube';
+    $('.pause').hide();
+    $('.play').hide();
+    $('.stop').hide();
+    event.stopPropagation();
+});
+
 $( document ).ready(function() {
     $('.pause').hide();
     $('.play').hide();
+    $('.stop').hide();
 });
 
 (function($){

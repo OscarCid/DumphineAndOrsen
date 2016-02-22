@@ -13,9 +13,11 @@ body
     color: #217419;
 }
 
-#lista
+#controles
 {
-
+    background-color: #fdff38;
+    padding: 10px 10px 10px 10px;
+    overflow-y: auto;
 }
 
 #contenidoLista
@@ -45,6 +47,22 @@ body
     line-height: 40px;
     /* borde interno dentro del div */
     padding-left: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+li
+{
+    font-family: 'Indie Flower', cursive;
+    font-size: medium;
+}
+#cancion
+{
+    font-family: 'Indie Flower', cursive;
+    font-size: medium;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 40px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

@@ -8,7 +8,6 @@
             <div id="lista" class="col-md-4">
                 <!-- div necesario para poder generar margenes sino la wea vale picorneta -->
                 <div id="contenidoLista" class="shadow">
-
                     <?php
                         foreach ($videos->result() as $videos)
                         {
@@ -22,7 +21,12 @@
                             <div class="dibujito">
                                 <span class="glyphicon glyphicon-pause pause"></span>
                             </div>
+                            <div class="dibujito">
+                                <span class="glyphicon glyphicon-stop stop"></span>
+                            </div>
+                            <div id="cancion">
                             '.$ytarr['title'].'
+                            </div>
                         </div>';
                         }
                     ?>
