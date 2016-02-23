@@ -6,6 +6,8 @@
 <script src="<?php echo base_url(); ?>/asset/src/youtube/youtube.js" type="text/javascript"></script>
 <!-- Script ScrollBar -->
 <script src="<?php echo base_url(); ?>/asset/src/scrollbar-plugin/jquery.mCustomScrollbar.js" type="text/javascript"></script>
+
+<script src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js" type="text/javascript"></script>
 <script>
     $(function(){
         $("#menu_youtube").addClass("active");

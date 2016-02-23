@@ -1,6 +1,17 @@
 <!-- Contenedor DIV Reproductor -->
     <div class="container-fluid" id="body_youtube">
         <div class="row">
+            <?php if ($this->session->flashdata('category_success')) { ?>
+                <div class="alert alert-<?= $this->session->flashdata('tipo_alerta') ?> col-md-4 col-md-offset-4">
+                    <span class="glyphicon glyphicon-<?= $this->session->flashdata('icono') ?>" aria-hidden="true"></span>
+                    <?= $this->session->flashdata('category_success') ?>
+                </div>
+                <script>
+                    setTimeout(function() {
+                        $('.alert').fadeOut('slow');
+                    }, 3000);
+                </script>
+            <?php } ?>
             <div id="contenedorPlayer" class="col-md-8">
                 <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
                 <div id="player" class="shadow"></div>
@@ -11,8 +22,6 @@
                     <?php
                         foreach ($videos->result() as $videos)
                         {
-                            $content = file_get_contents("http://youtube.com/get_video_info?video_id=".$videos->id_video);
-                            parse_str($content, $ytarr);
                             echo '
                         <div class="playlist shadow" video="'.$videos->id_video.'">
                             <div class="dibujito">
@@ -25,7 +34,7 @@
                                 <span class="glyphicon glyphicon-stop stop"></span>
                             </div>
                             <div id="cancion">
-                            '.$ytarr['title'].'
+                            '.$videos->name.'
                             </div>
                         </div>';
                         }
