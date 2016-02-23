@@ -54,7 +54,7 @@ class Youtube extends CI_Controller
         );
         //fin codigo para enviar los datos al modelo y retorne la respuesta dependiendo si el video ya se encuentra en la lista o no
 
-        //aqui comienza el retorno de informacion a la vista
+        //aqui comienza el retorno de informacion a la vista y existen tres posibilidades
         if($data[NAME] == '' or $id_video == '0') //Also tried this "if(strlen($strTemp) > 0)"
         {
             $this->session->set_flashdata('category_success', 'El video no existe, revisa la URL he intente nuevamente');
