@@ -1,3 +1,4 @@
+<body>
 <div id="contenedorPlayer" class="col-md-8 col-md-offset-2">
     <form data-toggle="validator" role="form" action='<?php echo base_url(); ?>Youtube/recibirDatos_video' method="post">
         <div class="form-group">

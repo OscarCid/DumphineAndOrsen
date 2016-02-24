@@ -1,15 +1,16 @@
+<body>
 <!-- Contenedor DIV Reproductor -->
     <div class="container-fluid" id="body_youtube">
         <div class="row">
             <?php if ($this->session->flashdata('category_success')) { ?>
                 <div class="alert alert-<?= $this->session->flashdata('tipo_alerta') ?> col-md-4 col-md-offset-4">
                     <span class="glyphicon glyphicon-<?= $this->session->flashdata('icono') ?>" aria-hidden="true"></span>
-                    <?= $this->session->flashdata('category_success') ?>
+                    <?= $this->session->flashdata('category_success') ?> <img src="http://i600.photobucket.com/albums/tt82/moon20_album/emoticons/1313.gif">
                 </div>
                 <script>
                     setTimeout(function() {
                         $('.alert').fadeOut('slow');
-                    }, 3000);
+                    }, 5000);
                 </script>
             <?php } ?>
             <div id="contenedorPlayer" class="col-md-8">

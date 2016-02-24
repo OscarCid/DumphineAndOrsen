@@ -9,5 +9,5 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>/asset/src/tipso/tipso.css">
     <link href="<?php echo base_url(); ?>/asset/src/LoL/estilo.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>/asset/src/tipso/animate.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>/asset/src/estilo_navbar.css" rel="stylesheet">
 </head>
-<body onload="summonerLookUp();">

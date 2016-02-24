@@ -61,7 +61,7 @@ function onPlayerStateChange(event) {
             $('.pause').hide();
             $('.play').hide();
             $('.stop').hide();
-            document.title = 'Dumphine And Orsen | Youtube';
+            document.title = 'D&O | Youtube!';
             break;
         }
     }
@@ -117,7 +117,7 @@ $('.stop').on('click',function(){
     player.stopVideo();
     $('.playlist').css('background', '');
     $('.playlist').css('text-shadow', '');
-    document.title = 'Dumphine And Orsen | Youtube';
+    document.title = 'D&O | Youtube';
     $('.pause').hide();
     $('.play').hide();
     $('.stop').hide();

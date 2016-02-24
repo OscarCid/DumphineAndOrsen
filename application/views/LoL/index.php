@@ -1,3 +1,4 @@
+<body onload="summonerLookUp();">
 <div class="container">
     <!-- margen para toda la web grid 1 espacio 10 de contenido -->
     <div class="row">

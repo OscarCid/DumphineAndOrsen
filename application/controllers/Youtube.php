@@ -17,20 +17,42 @@ class Youtube extends CI_Controller
 
     function index()
     {
+        /* preparando data para enviar a la vista, aqui se envia datos desde el modelo (lista canciones) */
         $data['videos'] = $this->Youtube_model->get_videos();
-        $data['alerta'] = "";
-        $this -> load -> view ('Youtube/header');
+        // aca se prepara el array con las librerias especificas para la vista ya que se utiliza una plantilla generica para el footer y el header
+        //array para el footer
+        $script = array
+        (
+            '<script src="'.base_url().'asset/src/scrollbar-plugin/jquery.mCustomScrollbar.js" type="text/javascript"></script>',
+            '<script src="'.base_url().'asset/src/youtube/youtube.js" type="text/javascript"></script>',
+            '<script>
+                    $(function(){
+                        $("#menu_youtube").addClass("active");
+                    });
+                </script>'
+        );
+        $footer['script'] = $script;
+        // array para el header (aqui van incluido el titulo del header y los css
+        $style = array
+        (
+            '<link href="'.base_url().'asset/src/youtube/estilo_youtube.css" rel="stylesheet">',
+            '<link href="'.base_url().'asset/src/scrollbar-plugin/jquery.mCustomScrollbar.css" rel="stylesheet">'
+        );
+        $header['style'] = $style;
+        $header['titulo'] = "Youtube!";
+        $this -> load -> view ('plantilla/header', $header);
         $this -> load -> view ('plantilla/navbar');
         $this -> load -> view ('Youtube/index', $data);
-        $this -> load -> view ('Youtube/footer');
+        $this -> load -> view ('plantilla/footer', $footer);
     }
 
     function Insertar_video()
     {
-        $this -> load -> view ('plantilla/header');
+        $header['titulo'] = "Insertar Nuevo Video";
+        $this -> load -> view ('plantilla/header', $header);
         $this -> load -> view ('plantilla/navbar');
         $this -> load -> view ('Youtube/insertar_video');
-        $this -> load -> view ('Youtube/footer');
+        $this -> load -> view ('plantilla/footer');
     }
 
     function recibirDatos_video()
@@ -55,6 +77,7 @@ class Youtube extends CI_Controller
         //fin codigo para enviar los datos al modelo y retorne la respuesta dependiendo si el video ya se encuentra en la lista o no
 
         //aqui comienza el retorno de informacion a la vista y existen tres posibilidades
+        //if para revisar si es valida la url ingresada
         if($data[NAME] == '' or $id_video == '0') //Also tried this "if(strlen($strTemp) > 0)"
         {
             $this->session->set_flashdata('category_success', 'El video no existe, revisa la URL he intente nuevamente');
@@ -63,13 +86,15 @@ class Youtube extends CI_Controller
             redirect('/Youtube');
         }
 
+        //if para enviar informacion de que el video se subio de forma correcta
         if ($this->Youtube_model-> insertar_video($data) == true)
         {
-            $this->session->set_flashdata('category_success', 'El video se a agregado con exito! :D.');
+            $this->session->set_flashdata('category_success', 'El video se a agregado con exito!');
             $this->session->set_flashdata('tipo_alerta', 'success');
             $this->session->set_flashdata('icono', 'saved');
             redirect('/Youtube');
         }
+        //if para enviar informacion de que el video ya existe en la lista
         else
         {
             $this->session->set_flashdata('tipo_alerta', 'warning');

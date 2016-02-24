@@ -16,7 +16,49 @@
                 <li id="menu_lol"><a href="<?php echo site_url('/LoL'); ?>">League of Legends<span class="sr-only">(current)</span></a></li>
                 <li id="menu_youtube"><a href="<?php echo site_url('/Youtube'); ?>">Youtube</a></li>
             </ul>
-            <button type="button" class="btn btn-success navbar-btn pull-right">Sign in</button>
+            <!-- Single button -->
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <button type="button" class="btn btn-success navbar-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Ingresa <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu cuadro">
+                        <li>
+                            <form data-toggle="validator" role="form" action='#' method="post">
+                                <div class="form-group">
+                                    <label for="inputName" class="control-label">Usuario</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        name="user"
+                                        id="user"
+                                        data-error="Ingresa tu usuario!!"
+                                        placeholder="User"
+                                        required
+                                    >
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputName" class="control-label">Contraseña</label>
+                                    <input
+                                        type="password"
+                                        class="form-control"
+                                        name="password"
+                                        id="password"
+                                        data-error="Ingresa tu contraseña!!!"
+                                        placeholder="Password"
+                                        required
+                                    >
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success btn-block">Ingresa</button>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
