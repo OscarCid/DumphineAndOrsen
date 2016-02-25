@@ -17,6 +17,10 @@ class Youtube extends CI_Controller
 
     function index()
     {
+        //codigo para saber la session de usuario
+        $session_data = $this->session->userdata('logged_in');
+        $user['username'] = $session_data['username'];
+        //fin codigo para saber la session de usuario
         /* preparando data para enviar a la vista, aqui se envia datos desde el modelo (lista canciones) */
         $data['videos'] = $this->Youtube_model->get_videos();
         // aca se prepara el array con las librerias especificas para la vista ya que se utiliza una plantilla generica para el footer y el header
@@ -41,18 +45,30 @@ class Youtube extends CI_Controller
         $header['style'] = $style;
         $header['titulo'] = "Youtube!";
         $this -> load -> view ('plantilla/header', $header);
-        $this -> load -> view ('plantilla/navbar');
+        $this -> load -> view ('plantilla/navbar', $user);
         $this -> load -> view ('Youtube/index', $data);
         $this -> load -> view ('plantilla/footer', $footer);
     }
 
     function Insertar_video()
     {
-        $header['titulo'] = "Insertar Nuevo Video";
-        $this -> load -> view ('plantilla/header', $header);
-        $this -> load -> view ('plantilla/navbar');
-        $this -> load -> view ('Youtube/insertar_video');
-        $this -> load -> view ('plantilla/footer');
+        if($this->session->userdata('logged_in'))
+        {
+            //codigo para saber la session de usuario
+            $session_data = $this->session->userdata('logged_in');
+            $data['username'] = $session_data['username'];
+            //fin codigo para saber la session de usuario
+            $header['titulo'] = "Insertar Nuevo Video";
+            $this->load->view('plantilla/header', $header);
+            $this->load->view('plantilla/navbar', $data);
+            $this->load->view('Youtube/insertar_video');
+            $this->load->view('plantilla/footer');
+        }
+        else
+            {
+                //If no session, redirect to login page
+                redirect('/Youtube');
+            }
     }
 
     function recibirDatos_video()

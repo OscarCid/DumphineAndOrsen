@@ -4,14 +4,6 @@ body
 }
 
 /* coloca color rojo a youtube */
-.active a{
-    color: red !important;
-}
-
-
-.navbar .brand, .navbar .nav > li > a:hover {
-    color: #217419;
-}
 
 #controles
 {
@@ -51,11 +43,7 @@ body
     overflow: hidden;
     text-overflow: ellipsis;
 }
-li
-{
-    font-family: 'Indie Flower', cursive;
-    font-size: medium;
-}
+
 #cancion
 {
     font-family: 'Indie Flower', cursive;

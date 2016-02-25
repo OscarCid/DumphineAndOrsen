@@ -9,6 +9,29 @@
     color: #00CC00;
 }
 
+.active a{
+    color: red !important;
+}
+
+
+.navbar .brand, .navbar .nav > li > a:hover {
+    color: #217419;
+}
+
+.nick
+{
+    font-family: 'Indie Flower', cursive;
+    color: #00CC00 !important;
+    font-size: medium;
+}
+
+li
+{
+    font-family: 'Indie Flower', cursive;
+    font-size: medium;
+}
+
+
 input, textarea{
     background-color: #363636 !important;
     color: #00ff00 !important;

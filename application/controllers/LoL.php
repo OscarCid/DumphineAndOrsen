@@ -21,8 +21,24 @@ class LoL extends CI_Controller
                 </script>'
         );
         $data['script'] = $script;
-        $this -> load -> view ('LoL/header');
-        $this -> load -> view ('plantilla/navbar');
+
+        // array para el header (aqui van incluido el titulo del header y los css
+        $style = array
+        (
+            '<link href="'.base_url().'asset/src/tipso/tipso.css" rel="stylesheet">',
+            '<link href="'.base_url().'asset/src/tipso/animate.css" rel="stylesheet">',
+            '<link href="'.base_url().'asset/src/LoL/estilo.css" rel="stylesheet">'
+        );
+        $header['style'] = $style;
+        $header['titulo'] = "LoL!";
+
+
+        //codigo para saber la session de usuario
+        $session_data = $this->session->userdata('logged_in');
+        $user['username'] = $session_data['username'];
+
+        $this -> load -> view ('plantilla/header', $header);
+        $this -> load -> view ('plantilla/navbar', $user);
         $this -> load -> view ('LoL/index', $data);
         $this -> load -> view ('plantilla/footer');
     }
