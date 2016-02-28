@@ -20,7 +20,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <?php if (isset($username))
                 {
-                    echo ' <a href="#" class="btn btn-primary btn-xs navbar-btn" role="button">Control Panel</a>';
+                    echo ' <a href="'.site_url('/control_panel').'" class="btn btn-primary btn-xs navbar-btn" role="button">Control Panel</a>';
                     echo ' <a href="'.site_url('/verifylogin/logout').'" class="btn btn-danger btn-xs navbar-btn" role="button">Logout</a>';
                     echo ' <p class="navbar-text nick">Hola '.$username.'</p>';
                 }

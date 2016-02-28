@@ -23,6 +23,7 @@ class Youtube_model extends CI_Model
 
     public function get_videos()
     {
+        $this->db->order_by('name','ASC');
         $consulta = $this->db->get('videos');
         if($consulta->num_rows() > 0)
         {
