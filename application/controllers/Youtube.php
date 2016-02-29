@@ -94,7 +94,7 @@ class Youtube extends CI_Controller
 
         //aqui comienza el retorno de informacion a la vista y existen tres posibilidades
         //if para revisar si es valida la url ingresada
-        if($data[NAME] == '' or $id_video == '0') //Also tried this "if(strlen($strTemp) > 0)"
+        if($data['NAME'] == '' or $id_video == '0') //Also tried this "if(strlen($strTemp) > 0)"
         {
             $this->session->set_flashdata('category_success', 'El video no existe, revisa la URL he intente nuevamente');
             $this->session->set_flashdata('tipo_alerta', 'danger');
