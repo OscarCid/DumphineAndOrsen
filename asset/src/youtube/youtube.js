@@ -104,7 +104,6 @@ $('.playlist').click(function(){
 
 $('.play').on('click',function(){
     player.playVideo();
-    alert($('.playlist > #cancion').length);
     event.stopPropagation();
 });
 

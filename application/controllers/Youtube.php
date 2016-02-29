@@ -87,7 +87,7 @@ class Youtube extends CI_Controller
         }
         else
         {
-            $this->session->set_flashdata('category_success', 'El video no existe, revisa la URL he intente nuevamente');
+            $this->session->set_flashdata('category_success', 'Problemas para agregar el video, quizas este desactivado agregarlo :C');
             $this->session->set_flashdata('tipo_alerta', 'danger');
             $this->session->set_flashdata('icono', 'remove');
             redirect('/Youtube');
@@ -115,7 +115,7 @@ class Youtube extends CI_Controller
         //if para enviar informacion de que el video se subio de forma correcta
         if ($this->Youtube_model-> insertar_video($data) == true)
         {
-            $this->session->set_flashdata('category_success', 'El video se a agregado con exito!');
+            $this->session->set_flashdata('category_success', 'El video se a agregado con exito! <img src="http://i600.photobucket.com/albums/tt82/moon20_album/emoticons/1313.gif">');
             $this->session->set_flashdata('tipo_alerta', 'success');
             $this->session->set_flashdata('icono', 'saved');
             redirect('/Youtube');

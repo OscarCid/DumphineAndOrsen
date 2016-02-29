@@ -5,7 +5,7 @@
             <?php if ($this->session->flashdata('category_success')) { ?>
                 <div class="alert alert-<?= $this->session->flashdata('tipo_alerta') ?> col-md-4 col-md-offset-4">
                     <span class="glyphicon glyphicon-<?= $this->session->flashdata('icono') ?>" aria-hidden="true"></span>
-                    <?= $this->session->flashdata('category_success') ?> <img src="http://i600.photobucket.com/albums/tt82/moon20_album/emoticons/1313.gif">
+                    <?= $this->session->flashdata('category_success') ?>
                 </div>
                 <script>
                     setTimeout(function() {
