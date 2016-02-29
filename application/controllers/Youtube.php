@@ -82,8 +82,17 @@ class Youtube extends CI_Controller
         //codigo para obtener nombre del video de forma automatica
         $content = file_get_contents("http://youtube.com/get_video_info?video_id=".$id_video);
         parse_str($content, $ytarr);
+        if (isset($ytarr['title'])) {
+            $nombre = $ytarr['title'];
+        }
+        else
+        {
+            $this->session->set_flashdata('category_success', 'El video no existe, revisa la URL he intente nuevamente');
+            $this->session->set_flashdata('tipo_alerta', 'danger');
+            $this->session->set_flashdata('icono', 'remove');
+            redirect('/Youtube');
+        }
 
-        $nombre = $ytarr['title'];
         //fin codigo para obtener nombre del video de forma automatica
 
         //codigo para enviar los datos al modelo y retorne la respuesta dependiendo si el video ya se encuentra en la lista o no
