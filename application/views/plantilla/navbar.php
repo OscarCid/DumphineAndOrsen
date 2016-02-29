@@ -34,7 +34,7 @@
                     <ul class="dropdown-menu cuadro">
                         <li>
                             '.validation_errors().'
-                            <form data-toggle="validator" role="form" action="'.base_url().'verifyLogin" method="post">
+                            <form data-toggle="validator" role="form" action="'.site_url('/verifylogin').'" method="post">
                                 <div class="form-group">
                                     <label for="inputName" class="control-label">Usuario</label>
                                     <input
