@@ -5,6 +5,7 @@
  */
 var ID = "Dumphine";
 var APIKEY = "b8e25ec6-f1e6-402a-862d-7a315196e650";
+var version_ddragon = "6.4.1";
 
 function summonerLookUp()
 {
@@ -34,7 +35,7 @@ function summonerLookUp()
 
                 document.getElementById("sLevel").innerHTML = "  Nivel: "+ summonerLevel;
                 // document.getElementById("sID").innerHTML = "<strong>  " + ID + "</strong>";
-                document.getElementById("sAvatar").innerHTML = "<IMG style='float:left; margin:5px 5px 0px 0px' height='100px' width='100px' SRC='http://ddragon.leagueoflegends.com/cdn/6.4.1/img/profileicon/"+summonerAvatar+".png'>";
+                document.getElementById("sAvatar").innerHTML = "<IMG style='float:left; margin:5px 5px 0px 0px' height='100px' width='100px' SRC='http://ddragon.leagueoflegends.com/cdn/"+version_ddragon+"/img/profileicon/"+summonerAvatar+".png'>";
 
                 summonerLeague(summonerID);
                 lastMatch(summonerID);
@@ -134,7 +135,7 @@ function championName(id)
         success: function (resp) {
             var nombre = resp.name;
             nombre = nombre.replace(/\s+/, "");
-           document.getElementById("champIMG").innerHTML = "<a href='http://gameinfo.las.leagueoflegends.com/es/game-info/champions/"+ nombre.toLowerCase() +"/' data-toggle='tooltip' title='Click en la imagen para mas informacion sobre " + resp.name + "' target='Champion'><IMG style='float:left; margin:5px 5px 5px 0px' height='50px' width='50px' SRC='http://ddragon.leagueoflegends.com/cdn/6.3.1/img/champion/"+nombre+".png'></a>";
+           document.getElementById("champIMG").innerHTML = "<a href='http://gameinfo.las.leagueoflegends.com/es/game-info/champions/"+ nombre.toLowerCase() +"/' data-toggle='tooltip' title='Click en la imagen para mas informacion sobre " + resp.name + "' target='Champion'><IMG style='float:left; margin:5px 5px 5px 0px' height='50px' width='50px' SRC='http://ddragon.leagueoflegends.com/cdn/"+version_ddragon+"/img/champion/"+nombre+".png'></a>";
 
         },
 
@@ -203,7 +204,7 @@ function summonerSpell(spellID, divSpell)
             nombreSpell = resp.key;
             españolSpell = resp.name;
             descripcion = resp.description;
-            document.getElementById(divSpell).innerHTML = "<IMG style='float:left' height='25px' width='25px' SRC='http://ddragon.leagueoflegends.com/cdn/6.3.1/img/spell/"+nombreSpell+".png'></a>";
+            document.getElementById(divSpell).innerHTML = "<IMG style='float:left' height='25px' width='25px' SRC='http://ddragon.leagueoflegends.com/cdn/"+version_ddragon+"/img/spell/"+nombreSpell+".png'></a>";
             $('#'+divSpell).tipso({
                 speed               : 100,
                 titleBackground     : '#000',
@@ -241,7 +242,7 @@ function summonerItems(itemID, divItem)
         {
             descripcion = resp.description;
             nombre = resp.name;
-            document.getElementById(divItem).innerHTML = "<IMG style='float:left' height='25px' width='25px' SRC='http://ddragon.leagueoflegends.com/cdn/6.3.1/img/item/"+ itemID +".png'>";
+            document.getElementById(divItem).innerHTML = "<IMG style='float:left' height='25px' width='25px' SRC='http://ddragon.leagueoflegends.com/cdn/"+version_ddragon+"/img/item/"+ itemID +".png'>";
             $('#'+divItem).tipso({
                 speed               : 100,
                 titleBackground     : '#000',
