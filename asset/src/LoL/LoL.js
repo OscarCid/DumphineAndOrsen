@@ -34,7 +34,7 @@ function summonerLookUp()
 
                 document.getElementById("sLevel").innerHTML = "  Nivel: "+ summonerLevel;
                 // document.getElementById("sID").innerHTML = "<strong>  " + ID + "</strong>";
-                document.getElementById("sAvatar").innerHTML = "<IMG style='float:left; margin:5px 5px 0px 0px' height='100px' width='100px' SRC='http://ddragon.leagueoflegends.com/cdn/6.3.1/img/profileicon/"+summonerAvatar+".png'>";
+                document.getElementById("sAvatar").innerHTML = "<IMG style='float:left; margin:5px 5px 0px 0px' height='100px' width='100px' SRC='http://ddragon.leagueoflegends.com/cdn/6.4.1/img/profileicon/"+summonerAvatar+".png'>";
 
                 summonerLeague(summonerID);
                 lastMatch(summonerID);
