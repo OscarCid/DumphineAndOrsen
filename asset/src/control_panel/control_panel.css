@@ -70,3 +70,17 @@ td
     background-color: #5e5e5e;
     color: white;
 }
+
+.modal-body {
+    background-color: #000;
+}
+
+.modal-footer
+{
+    background-color: #000;
+}
+
+.modal-header
+{
+    background-color: rgba(9, 9, 9, 0.82);
+}

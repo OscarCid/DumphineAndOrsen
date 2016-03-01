@@ -21,6 +21,24 @@ class Youtube_model extends CI_Model
         else return false;
     }
 
+    function editar_nombre($data)
+    {
+        $this->db->trans_start();
+        $this->db->where('id_video', $data['ID_VIDEO']);
+        $this->db->set('name', $data['NAME']);
+        $this->db->update('videos');
+        $this->db->trans_complete();
+
+        if ($this->db->trans_status() === FALSE)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
     public function get_videos()
     {
         $this->db->order_by('name','ASC');

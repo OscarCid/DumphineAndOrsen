@@ -16,7 +16,7 @@
                     <div class="help-block with-errors"></div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Agregar Video!</button>
                 </div>
             </form>
         </div>
