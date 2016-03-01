@@ -44,6 +44,13 @@ body
     text-overflow: ellipsis;
 }
 
+.playlist:hover
+{
+    /* Color de fondo div */
+    background-color: #38383b;
+    cursor: url('../img/Link.cur'), pointer;
+}
+
 #cancion
 {
     font-family: 'Indie Flower', cursive;
@@ -62,12 +69,6 @@ body
     vertical-align: middle;
     line-height: 40px;
     margin-right: 10px;
-}
-
-.playlist:hover
-{
-    /* Color de fondo div */
-    background-color: #38383b;
 }
 
 .text

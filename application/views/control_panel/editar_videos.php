@@ -58,7 +58,7 @@
                                             </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancelar</button>
                                         <button type="submit" class="btn btn-success btn-sm">Editar Video!</button>
                                     </div>
                                     </form>
