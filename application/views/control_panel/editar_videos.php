@@ -36,7 +36,7 @@
                                         <h5 class="modal-title" id="gridSystemModalLabel">Modificar nombre video</h5>
                                     </div>
                                     <div class="modal-body">
-                                        <form data-toggle="validator" role="form" action="'.base_url().'Control_panel/change_name" method="post">
+                                        <form data-toggle="validator" role="form" action='.base_url().'Control_panel/change_name method="post">
                                             <div class="form-group">
                                                 <label for="inputName" class="control-label">Nombre Video</label>
                                                 <input
