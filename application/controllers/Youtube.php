@@ -131,5 +131,32 @@ class Youtube extends CI_Controller
 
     }
 
+    function change_name()
+    {
+        $id_video = ($this->input->post('id_video'));
+        $name = ($this->input->post('name'));
+
+        $data = array(
+            'ID_VIDEO' => $id_video,
+            'NAME' => $name
+        );
+
+        if ($this->Youtube_model-> editar_nombre($data) == true)
+        {
+            $this->session->set_flashdata('category_success', 'El video se edito con exito! <img src="http://i600.photobucket.com/albums/tt82/moon20_album/emoticons/1313.gif">');
+            $this->session->set_flashdata('tipo_alerta', 'success');
+            $this->session->set_flashdata('icono', 'saved');
+            redirect('/control_panel/editar_videos');
+        }
+        //if para enviar informacion de que el video ya existe en la lista
+        else
+        {
+            $this->session->set_flashdata('tipo_alerta', 'warning');
+            $this->session->set_flashdata('category_success', 'Error al modificar el video, intente nuevamente');
+            $this->session->set_flashdata('icono', 'warning-sign');
+            redirect('/control_panel/editar_videos');
+        }
+    }
+
 }
 ?>
