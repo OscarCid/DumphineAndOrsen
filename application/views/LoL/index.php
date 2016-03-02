@@ -4,7 +4,7 @@
     <div class="row">
         <div id="userData" class="col-md-8 col-md-offset-2 col-xs-12">
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <div id="sAvatar"></div>
+                <div id="sAvatar"><IMG style='float:left; margin:5px 5px 0px 0px' height='100px' width='100px' SRC='<?php echo base_url(); ?>asset/src/img/icono.png'></div>
                 <select id="invocador"style="margin: 10px" onchange="summonerLookUp();" class="form-control input-medium">
                     <option selected="selected">Dumphine</option>
                     <option>Chuh</option>
@@ -32,17 +32,35 @@
             </div>
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div>
-                    <div id="spell" class="fake_img"  style="margin-top: 3px"></div>
-                    <div id="item1" class="fake_img" style="margin-top: -7px;margin-left: 15px" ></div>
-                    <div id="item3" class="fake_img" style="margin-top: -3px;margin-left: -3px" ></div>
-                    <div id="item5" class="fake_img" style="margin-top: -3px;margin-left: -3px" ></div>
+                    <div id="spell" class="fake_img"  style="margin-top: 3px">
+                        <IMG style='float:left' height='25px' width='25px' SRC='<?php echo base_url(); ?>asset/src/img/items/0.png'>
+                    </div>
+                    <div id="item1" class="fake_img" style="margin-top: -7px;margin-left: 15px" >
+                        <IMG style='float:left' height='25px' width='25px' SRC='<?php echo base_url(); ?>asset/src/img/items/0.png'>
+                    </div>
+                    <div id="item3" class="fake_img" style="margin-top: -3px;margin-left: -3px" >
+                        <IMG style='float:left' height='25px' width='25px' SRC='<?php echo base_url(); ?>asset/src/img/items/0.png'>
+                    </div>
+                    <div id="item5" class="fake_img" style="margin-top: -3px;margin-left: -3px" >
+                        <IMG style='float:left' height='25px' width='25px' SRC='<?php echo base_url(); ?>asset/src/img/items/0.png'>
+                    </div>
                 </div>
                 <div>
-                    <div id="spell2" class="fake_img"  ></div>
-                    <div id="item2" class="fake_img" style="margin-top: -7px;margin-left: 15px" ></div>
-                    <div id="item4" class="fake_img" style="margin-top: -3px;margin-left: -3px" ></div>
-                    <div id="item6" class="fake_img" style="margin-top: -3px;margin-left: -3px" ></div>
-                    <div id="trinket" class="fake_img" ></div>
+                    <div id="spell2" class="fake_img"  >
+                        <IMG style='float:left' height='25px' width='25px' SRC='<?php echo base_url(); ?>asset/src/img/items/0.png'>
+                    </div>
+                    <div id="item2" class="fake_img" style="margin-top: -7px;margin-left: 15px" >
+                        <IMG style='float:left' height='25px' width='25px' SRC='<?php echo base_url(); ?>asset/src/img/items/0.png'>
+                    </div>
+                    <div id="item4" class="fake_img" style="margin-top: -3px;margin-left: -3px" >
+                        <IMG style='float:left' height='25px' width='25px' SRC='<?php echo base_url(); ?>asset/src/img/items/0.png'>
+                    </div>
+                    <div id="item6" class="fake_img" style="margin-top: -3px;margin-left: -3px" >
+                        <IMG style='float:left' height='25px' width='25px' SRC='<?php echo base_url(); ?>asset/src/img/items/0.png'>
+                    </div>
+                    <div id="trinket" class="fake_img" >
+                        <IMG style='float:left' height='25px' width='25px' SRC='<?php echo base_url(); ?>asset/src/img/items/0.png'>
+                    </div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-12">

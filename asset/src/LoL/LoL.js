@@ -135,8 +135,12 @@ function championName(id)
         success: function (resp) {
             var nombre = resp.name;
             nombre = nombre.replace(/\s+/, "");
-           document.getElementById("champIMG").innerHTML = "<a href='http://gameinfo.las.leagueoflegends.com/es/game-info/champions/"+ nombre.toLowerCase() +"/' data-toggle='tooltip' title='Click en la imagen para mas informacion sobre " + resp.name + "' target='Champion'><IMG style='float:left; margin:5px 5px 5px 0px' height='50px' width='50px' SRC='http://ddragon.leagueoflegends.com/cdn/"+version_ddragon+"/img/champion/"+nombre+".png'></a>";
-
+            document.getElementById("champIMG").innerHTML = "<a href='http://gameinfo.las.leagueoflegends.com/es/game-info/champions/"+ nombre.toLowerCase() +"/' data-toggle='tooltip' title='Click en la imagen para mas informacion sobre " + resp.name + "' target='Champion'><IMG style='float:left; margin:5px 5px 5px 0px' height='50px' width='50px' SRC='http://ddragon.leagueoflegends.com/cdn/"+version_ddragon+"/img/champion/"+nombre+".png'></a>";
+            $("body").css({
+                "background-image": "url(http://ddragon.leagueoflegends.com/cdn/img/champion/splash/"+nombre+"_0.jpg)",
+                "background-attachment": "fixed",
+                "background-size": "100%"
+            });
         },
 
         error: function (XMLHttpRequest, textStatus, errorThrown) {
