@@ -15,6 +15,7 @@
             <ul class="nav navbar-nav">
                 <li id="menu_lol"><a href="<?php echo site_url('/LoL'); ?>">League of Legends<span class="sr-only">(current)</span></a></li>
                 <li id="menu_youtube"><a href="<?php echo site_url('/Youtube'); ?>">Youtube</a></li>
+                <li id="menu_wot"><a href="<?php echo site_url('/WoT'); ?>">World of Tank</a></li>
             </ul>
             <!-- Single button -->
             <ul class="nav navbar-nav navbar-right">
