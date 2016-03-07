@@ -1,7 +1,7 @@
 body
 {
     background-color: black;
-    color: #00ff00;
+    color: #ffffff;
     font-family: 'Fjalla One', sans-serif;
 }
 
@@ -9,6 +9,7 @@ body
 {
     background-color: #0c0c0c;
     margin-top: -15px;
+    margin-bottom: 30px;
 }
 
 /* practicando edicion css colores nav-tab */
@@ -28,7 +29,7 @@ body
 .nav-tabs > li > a:hover
 {
     color: #fff9c2;
-    text-shadow: 0px 0px 6px rgba(255, 13, 32, 0.7);
+    text-shadow: 0 0 3px #FF0000;
     background-color: #0c0c0c;
     border: transparent;
 
@@ -39,8 +40,111 @@ body
 .nav-tabs > li.active > a:focus
 {
     color: #fff9c2 !important;
-    text-shadow: 0px 0px 6px rgba(255, 13, 32, 0.9);
+    text-shadow: 0 0 3px #FF0000;
     border: 1px solid #252525;
     border-bottom: 1px solid #000000;
     background-color: black;
+}
+
+/* fin codigo css tabs */
+/* practicando css texto informacion css */
+
+.valor
+{
+    font-size: 17px;
+    text-shadow: 0px 0px 12px rgba(255, 255, 255, 0.75);
+
+
+}
+.barrita
+{
+    width: 50%;
+    margin: 0 auto;
+}
+
+.barrita:after {
+    content : "";
+    position: absolute;
+    left    : 28%;
+    bottom  : 25px;
+    height  : 1px;
+    width   : 28%;  /* or 100px */
+    border-bottom:1px solid #2E2F2A;
+}
+
+
+.name_valor
+{
+    color: #51504B;
+    margin-top: -10px;
+    font-size: 10px;
+}
+
+/* css para el buscador */
+
+.btn-WoT
+{
+    background-image: linear-gradient(to bottom,#5D4D4D 0,#000000 100%);
+    border-color: #79794a;
+}
+
+.btn:hover
+{
+    color: #fff;
+    text-shadow: 0px 0px 12px rgba(255, 255, 255, 0.75);
+    background-image: linear-gradient(to bottom,#5D4D4D 0,#000000 100%);
+    border-color: #79794a;
+}
+
+.btn:focus, .btn.active:focus
+{
+    color: #fff;
+    outline: 0 none;
+}
+
+.btn:active:focus
+{
+    color: #fff;
+    outline: 1px solid #eeebba;
+}
+
+
+input, textarea{
+    background-color: #363636 !important;
+    color: #fff9c2 !important;
+    text-shadow: 0 0 3px #FF0000;
+}
+
+.form-control::-moz-placeholder
+{
+    color: #79794a;
+}
+
+.form-control::-webkit-input-placeholder
+{
+    color: #79794a;
+}
+
+.form-control:-ms-input-placeholder
+{
+    color: #79794a;
+}
+
+.form-control
+{
+    border: 1px solid #807d61;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(121, 121, 74, 0.6);
+}
+
+.form-control:focus
+{
+    border-color: #fff9c2;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(199, 197, 153, 0.75);
+}
+
+/* css imagen */
+
+.imagen_centro
+{
+    width: 50%; margin: 0 auto;
 }

@@ -14,7 +14,8 @@
 }
 
 
-.navbar .brand, .navbar .nav > li > a:hover {
+.navbar .brand, .navbar .nav > li > a:hover
+{
     color: #217419;
 }
 
@@ -32,19 +33,23 @@ li
 }
 
 
-input, textarea{
+input, textarea
+{
     background-color: #363636 !important;
     color: #00ff00 !important;
+    text-align: center;
 }
 
 .form-control::-moz-placeholder
 {
     color: #05790a;
 }
+
 .form-control::-webkit-input-placeholder
 {
     color: #05790a;
 }
+
 .form-control:-ms-input-placeholder
 {
     color: #05790a;

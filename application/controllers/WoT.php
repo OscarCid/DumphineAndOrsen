@@ -28,7 +28,12 @@ class WoT extends CI_Controller {
                     $(function(){
                         $("#menu_wot").addClass("active");
                     });
-            </script>'
+            </script>',
+            '<script type="text/javascript">
+            jQuery(document).ready(function ($) {
+                $(\'#tabs\').tab();
+            });
+        </script>'
         );
         $footer['script'] = $script;
         //fin footer
