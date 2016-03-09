@@ -61,7 +61,7 @@ function info_user(ID)
             percent_hits = (hits*100)/ shots;
             percent_hits = percent_hits.toFixed(2);
             percent_wins = (wins*100)/ batallas;
-            percent_wins = percent_wins.toFixed(2)
+            percent_wins = percent_wins.toFixed(2);
             battle_avg_dmg = (damage_dealt / batallas).toFixed(0);
 
 
