@@ -1,3 +1,8 @@
+<div class="cargando">
+    <div class="evento">
+        <span id="text_event"></span>
+    </div>
+</div>
 <div class="container">
     <div class="row">
         <div class="menu">
@@ -94,6 +99,7 @@
                                 </button>
                             </div>
                         </div>
+                        <p id="acc_id" class="text_id"></p>
                     </div>
                     <div class="col-sm-2">
                         <div class="contenedor">
@@ -132,5 +138,5 @@
                 <p>green green green green green</p>
             </div>
         </div>
-    </div>
+    </div> <!-- end row -->
 </div>
