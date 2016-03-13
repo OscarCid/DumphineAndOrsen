@@ -2,6 +2,7 @@
  * Created by Orsen on 06-03-2016.
  */
 var APIKEY = "6be59cbefdddc1454074718eb3434a96";
+var all_logros = [];
 
 $(document).ready(function(){
     $('#search').click(function()
@@ -34,7 +35,6 @@ function buscarID(nickname)
             if (json.status =="error" || json.meta.count == "0")
             {
                 alert("El usuario ingresado no existe, porfavor intente nuevamente");
-                $("#text_event").text("No existe la ID");
                 $('.cargando').hide();
 
             }
@@ -43,6 +43,7 @@ function buscarID(nickname)
                 id = json.data[0].account_id;
                 document.getElementById("acc_id").innerHTML = "Account ID: "+ id;
                 info_user(id);
+                logros_user(id);
             }
 
         },
@@ -55,7 +56,6 @@ function buscarID(nickname)
 
 function info_user(ID)
 {
-    $("#text_event").text("Cargando resumen del usuario");
     $.ajax({
         url: 'https://api.worldoftanks.com/wot/account/info/?application_id='+ APIKEY +'&account_id=' + ID,
         type: 'GET',
@@ -63,6 +63,7 @@ function info_user(ID)
         data: {},
         success: function (json)
         {
+            $("#text_event").text("Cargando Resumen del Usuario");
             wins = json.data[ID].statistics["all"].wins;
             losses = json.data[ID].statistics["all"].losses;
             batallas = json.data[ID].statistics["all"].battles;
@@ -89,8 +90,6 @@ function info_user(ID)
             document.getElementById("percent_hits").innerHTML = percent_hits+"%";
             document.getElementById("max_frags").innerHTML = max_frags;
             document.getElementById("battle_avg_dmg").innerHTML = battle_avg_dmg;
-            $('.cargando').hide();
-
         },
         error: function (XMLHttpRequest, textStatus, errorThrown)
         {
@@ -99,12 +98,81 @@ function info_user(ID)
     });
 }
 
+function logros_user(ID)
+{
+    $( ".logro").addClass( "opaco" );
+    $("#text_event").text("Cargando Logros del usuario");
+    $.ajax({
+        url: 'https://api.worldoftanks.com/wot/account/achievements/?application_id='+ APIKEY +'&language=es&account_id=' + ID,
+        type: 'GET',
+        dataType: 'json',
+        data: {},
+        success: function (json)
+        {
+            for (var logros in json.data[ID].achievements)
+            {
+                console.log(logros);
+                $( "."+logros ).removeClass( "opaco" );
+            } //end for
+            ocultar_div();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown)
+        {
+            alert("Problemas al obtener el resumen del jugador!");
+        }
+    });
+}
+
+function logros()
+{
+    $.ajax({
+        url: 'https://api.worldoftanks.com/wot/encyclopedia/achievements/?application_id='+ APIKEY +'&language=es',
+        type: 'GET',
+        dataType: 'json',
+        data: {},
+        success: function (json)
+        {
+            all_logros = json;
+            $("#text_event").text("Cargando Logros Valiosos del usuario");
+
+            for (var logros in json.data)
+            {
+                if (json.data[logros].image != null)
+                {
+                    $( "#"+json.data[logros].section ).append("<div class='col-md-1 col-sm-2 col-xs-3 logro opaco "+json.data[logros].name+"'><img src='"+json.data[logros].image+"'></div>");
+                }
+                else
+                {
+                    if (json.data[logros].name != "markOfMastery")
+                    {
+                        if (json.data[logros].name != "marksOnGun")
+                        {
+                            $( "#"+json.data[logros].section ).append("<div class='col-md-1 col-sm-2 col-xs-3 logro opaco "+json.data[logros].name+"'><img src='"+json.data[logros].options["3"].image+"'></div>");
+                        }
+                    }
+                }
+            } //end for
+        }, //end json success
+        error: function (XMLHttpRequest, textStatus, errorThrown)
+        {
+            alert("Problemas al obtener el resumen del jugador!");
+        }
+    });
+}
+
+function ocultar_div()
+{
+    $('.cargando').hide();
+}
+
 function formatNumber(num)
 {
     return ("" + num).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, function($1) { return $1 + "." });
 }
 
+//cosas paja ejecutar cuando carga la web
 $(window).load(function () {
     // Una vez se cargue al completo la página desaparecerá el div "cargando"
+    logros();
     $('.cargando').hide();
 });

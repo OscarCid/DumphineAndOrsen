@@ -124,10 +124,49 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> <!-- fin tab resumen -->
             <div class="tab-pane" id="orange">
-                <h1>Orange</h1>
-                <p>orange orange orange orange orange</p>
+                <div class="row" style="margin-top: 30px">
+                    <p style="text-align: center">Logros Valiosos</p>
+                    <div class="col-xs-12">
+                        <p style="text-align: left">Héroes de Batalla</p>
+                    </div>
+                    <div id="battle">
+                        <!-- aqui se cargan logros Heroe de batalla-->
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 30px">
+                    <div class="col-xs-12">
+                        <p style="text-align: left">Medallas Épicas</p>
+                    </div>
+                    <div id ="epic">
+                        <!-- aqui se cargan logros Medalla Epica-->
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 30px">
+                    <div class="col-xs-12">
+                        <p style="text-align: left">Grados Honorarios</p>
+                    </div>
+                    <div id ="special">
+                        <!-- aqui se cargan logros Grados Honorarios-->
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 30px">
+                    <div class="col-xs-12">
+                        <p style="text-align: left">Recuerdos Conmemorativos</p>
+                    </div>
+                    <div id ="memorial">
+                        <!-- aqui se cargan logros Grados Honorarios-->
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 30px">
+                    <div class="col-xs-12">
+                        <p style="text-align: left">Logros por etapas</p>
+                    </div>
+                    <div id ="class">
+                        <!-- aqui se cargan logros Grados Honorarios-->
+                    </div>
+                </div>
             </div>
             <div class="tab-pane" id="yellow">
                 <h1>Yellow</h1>
