@@ -199,3 +199,45 @@ input, textarea{
 {
     opacity: .2;
 }
+
+.tipso_style
+{
+    border-bottom: transparent !important;
+}
+
+.b-achivements_wrpr {
+    bottom: 5px;
+    display: block;
+    left: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: 0 0;
+    color: #b1b2b2;
+    font-family: Arial,"Helvetica CY",Helvetica,sans-serif;
+}
+
+.b-achivements_num {
+    border: 1px solid #5b5b5b;
+    font-size: 11px;
+    display: inline-block;
+    box-shadow: 0 10px 10px 1px rgba(0,0,0,0.6),0 0 9px 1px rgba(255,255,255,0.05),0 2px 5px 1px rgba(151, 151, 151, 0.59),0 0 13px 1px rgba(0,0,0,0.75);
+}
+
+.b-achivements_num span {
+    background: url("http://static-ptl-us.gcdn.co/static/3.35.4/common/css/scss/content/user/img/chivements-num.gif") repeat-x 0 0 #4f1514;
+    border: 1px solid #2c0909;
+    color: #fff;
+    padding: 0 3px;
+    text-shadow: 0 0 25px #000, 0 0 10px rgba(255, 255, 190, 0.39);
+    display: inline-block;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}

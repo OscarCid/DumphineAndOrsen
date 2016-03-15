@@ -101,6 +101,7 @@ function info_user(ID)
 function logros_user(ID)
 {
     $( ".logro").addClass( "opaco" );
+    $( ".b-achivements_wrpr" ).remove();
     $("#text_event").text("Cargando Logros del usuario");
     $.ajax({
         url: 'https://api.worldoftanks.com/wot/account/achievements/?application_id='+ APIKEY +'&language=es&account_id=' + ID,
@@ -111,8 +112,32 @@ function logros_user(ID)
         {
             for (var logros in json.data[ID].achievements)
             {
-                console.log(logros);
-                $( "."+logros ).removeClass( "opaco" );
+                if ($("."+logros).hasClass('class') != true)
+                {
+                    if (json.data[ID].achievements[logros] > 1)
+                    {
+                        $( "."+logros ).removeClass( "opaco" );
+                        $( "."+logros )
+                            .append(
+                                "<div class='b-achivements_wrpr'>" +
+                                "<span class='b-achivements_num'>" +
+                                "<span>"+json.data[ID].achievements[logros]+"</span>" +
+                                "</span>" +
+                                "</div>"
+                            );
+                    }
+                    else
+                    {
+                        $( "."+logros ).removeClass( "opaco" );
+                    }
+                }
+                else
+                {
+                    $( "."+logros ).removeClass( "opaco" );
+                    $('#'+logros).attr('src',"http://api.worldoftanks.com/static/2.36.2/wot/encyclopedia/achievement/"+logros+json.data[ID].achievements[logros]+".png");
+                    console.log("http://api.worldoftanks.com/static/2.36.2/wot/encyclopedia/achievement/"+logros+json.data[ID].achievements[logros]+".png") ;
+                }
+
             } //end for
             ocultar_div();
         },
@@ -139,7 +164,25 @@ function logros()
             {
                 if (json.data[logros].image != null)
                 {
-                    $( "#"+json.data[logros].section ).append("<div class='col-md-1 col-sm-2 col-xs-3 logro opaco "+json.data[logros].name+"'><img src='"+json.data[logros].image+"'></div>");
+                    //linea para colocar la imagen
+                    $( "#"+json.data[logros].section )
+                        .append(
+                        "<div class='col-md-1 col-sm-2 col-xs-3 logro opaco "+json.data[logros].name+"'>" +
+                            "<img src='"+json.data[logros].image+"'>" +
+                        "</div>");
+                    //monton de mierda para el tooltipo
+
+                    $('.'+json.data[logros].name).tipso({
+                        speed               : 100,
+                        titleBackground     : 'url(http://static-ptl-us.gcdn.co/static/3.35.4/wotp_static/img/core/frontend/scss/common/components/tooltip/img/tooltip_bg.jpg)',
+                        color               : '#979899',
+                        width               : 300,
+                        maxWidth            : '500',
+                        size                : 'default',
+                        background          : 'url(http://static-ptl-us.gcdn.co/static/3.35.4/wotp_static/img/core/frontend/scss/common/components/tooltip/img/tooltip_bg.jpg)'
+                    });
+                    jQuery('.'+json.data[logros].name).tipso('update', 'titleContent', json.data[logros].name_i18n);
+                    jQuery('.'+json.data[logros].name).tipso('update', 'content', json.data[logros].description);
                 }
                 else
                 {
@@ -147,7 +190,7 @@ function logros()
                     {
                         if (json.data[logros].name != "marksOnGun")
                         {
-                            $( "#"+json.data[logros].section ).append("<div class='col-md-1 col-sm-2 col-xs-3 logro opaco "+json.data[logros].name+"'><img src='"+json.data[logros].options["3"].image+"'></div>");
+                            $( "#"+json.data[logros].section ).append("<div class='col-md-1 col-sm-2 col-xs-3 logro opaco "+json.data[logros].name+" "+json.data[logros].section+"'><img id='"+json.data[logros].name+"' src='"+json.data[logros].options["3"].image+"'></div>");
                         }
                     }
                 }

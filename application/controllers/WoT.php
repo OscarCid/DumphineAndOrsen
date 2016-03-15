@@ -16,6 +16,7 @@ class WoT extends CI_Controller {
         $style = array
         (
             '<link href="'.base_url().'asset/src/WoT/estilo_WoT.css" rel="stylesheet">',
+            '<link href="'.base_url().'asset/src/tipso/tipso.css" rel="stylesheet">',
             '<link href=\'https://fonts.googleapis.com/css?family=Fjalla+One\' rel=\'stylesheet\' type=\'text/css\'>'
         );
         $header['style'] = $style;
@@ -24,6 +25,7 @@ class WoT extends CI_Controller {
         $script = array
         (
             '<script src="'.base_url().'asset/src/WoT/WoT.js" type="text/javascript"></script>',
+            '<script src="'.base_url().'asset/src/tipso/tipso.js" type="text/javascript"></script>',
             '<script>
                     $(function(){
                         $("#menu_wot").addClass("active");

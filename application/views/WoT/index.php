@@ -16,7 +16,7 @@
         <div id="my-tab-content" class="tab-content">
             <div class="tab-pane active" id="resumen">
                 <div class="row">
-                    <div class="col-sm-2 col-sm-offset-1">
+                    <div class="col-sm-2 col-xs-2 col-sm-offset-1">
                         <div class="contenedor">
                             <div class="imagen_texto">
                                 <img src="<?php echo base_url(); ?>asset/src/WoT/img/batallas.png">
@@ -27,7 +27,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-2 col-xs-2">
                         <div class="contenedor">
                             <div class="imagen_texto">
                                 <img src="<?php echo base_url(); ?>asset/src/WoT/img/victorias.png">
@@ -38,7 +38,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-2 col-xs-2">
                         <div class="imagen_centro">
                             <img src="<?php echo base_url(); ?>asset/src/WoT/Logo WoT.jpg">
                         </div>
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-2 col-xs-2">
                         <div class="contenedor">
                             <div class="imagen_texto">
                                 <img src="<?php echo base_url(); ?>asset/src/WoT/img/max_exp.png">
