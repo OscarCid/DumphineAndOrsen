@@ -82,7 +82,7 @@ function info_user(ID)
             percent_wins = percent_wins.toFixed(2);
             battle_avg_dmg = (damage_dealt / batallas).toFixed(0);
 
-
+            // codigo para la tab resumen
             document.getElementById("batallas").innerHTML = batallas;
             document.getElementById("percent_wins").innerHTML = percent_wins+"%";
             document.getElementById("battle_exp_avg").innerHTML = battle_exp_avg;
@@ -90,6 +90,12 @@ function info_user(ID)
             document.getElementById("percent_hits").innerHTML = percent_hits+"%";
             document.getElementById("max_frags").innerHTML = max_frags;
             document.getElementById("battle_avg_dmg").innerHTML = battle_avg_dmg;
+
+            // codigo para la tab estadisticas
+            document.getElementById("batallas2").innerHTML = batallas;
+            document.getElementById("percent_wins2").innerHTML = percent_wins+"%";
+            document.getElementById("battle_avg_dmg2").innerHTML = battle_avg_dmg;
+
         },
         error: function (XMLHttpRequest, textStatus, errorThrown)
         {
@@ -117,14 +123,14 @@ function logros_user(ID)
                     if (json.data[ID].achievements[logros] > 1)
                     {
                         $( "."+logros ).removeClass( "opaco" );
-                        $( "."+logros )
-                            .append(
-                                "<div class='b-achivements_wrpr'>" +
-                                "<span class='b-achivements_num'>" +
-                                "<span>"+json.data[ID].achievements[logros]+"</span>" +
-                                "</span>" +
-                                "</div>"
-                            );
+                        $( "."+logros ).append
+                        (
+                            "<div class='b-achivements_wrpr'>" +
+                            "<span class='b-achivements_num'>" +
+                            "<span>"+json.data[ID].achievements[logros]+"</span>" +
+                            "</span>" +
+                            "</div>"
+                        );
                     }
                     else
                     {
@@ -190,6 +196,7 @@ function logros()
                     {
                         if (json.data[logros].name != "marksOnGun")
                         {
+                            // AQUI FALTA CONTINUAR CON LOS ULTIMOS LOGROOOOOOOSSS (PONER IMAGENES EN CASO DE QUE NO SE MODIFIQUEN EN TIER IV)!!!!
                             $( "#"+json.data[logros].section ).append("<div class='col-md-1 col-sm-2 col-xs-3 logro opaco "+json.data[logros].name+" "+json.data[logros].section+"'><img id='"+json.data[logros].name+"' src='"+json.data[logros].options["3"].image+"'></div>");
                         }
                     }
