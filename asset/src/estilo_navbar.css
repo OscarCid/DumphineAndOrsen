@@ -9,10 +9,6 @@
     color: #00CC00;
 }
 
-.active a{
-    color: red !important;
-}
-
 
 .navbar .brand, .navbar .nav > li > a:hover
 {

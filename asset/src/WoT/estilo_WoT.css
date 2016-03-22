@@ -19,7 +19,9 @@ body
 }
 
 .nav-tabs > li,
-.nav-tabs > li > a
+.nav-tabs > li > a,
+.nav-pills > li,
+.nav-pills > li > a
 {
     font-size: 12px;
     font-family: 'Fjalla One', sans-serif;
@@ -99,7 +101,7 @@ body
     border-color: #79794a;
 }
 
-.btn:hover
+.btn-WoT:hover
 {
     color: #fff;
     text-shadow: 0px 0px 12px rgba(255, 255, 255, 0.75);
@@ -240,4 +242,111 @@ input, textarea{
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
+}
+
+/*     ===========                                      ================
+/*     ===========                                      ================
+/*     ===========             DIV Estadisticas         ================
+/*     ===========                                      ================
+/*     ===========                                      ================ */
+
+.nav-pills>li>a
+{
+    font-size: 12px;
+    height: 30px;
+    padding: 6px 25px 0 25px;
+    border-radius: inherit;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+.nav-pills> li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus
+{
+    color: #fff9c2 !important;
+    text-shadow: 0 0 7px #FF0000;
+}
+
+/* boton izquierdo */
+.nav-pills>.btn-izquierdo.active>a,
+.nav-pills>.btn-izquierdo.active>a:focus,
+.nav-pills>.btn-izquierdo.active>a:hover
+{
+    background: url("img/btnleftIzquierdo.jpg") no-repeat,
+    url("../WoT/img/activeIzq.jpg") repeat-x 0 0;
+}
+
+.nav-pills>.btn-izquierdo>a,
+.nav-pills>.btn-izquierdo>a:focus,
+.nav-pills>.btn-izquierdo>a:hover
+{
+    background: url("img/btn-normal-izquierdo1.jpg") no-repeat,
+    url("../WoT/img/btn-normal-derecho2.jpg") repeat-x 0 0;
+}
+
+/* boton derecho */
+
+.nav-pills>.btn-derecho.active>a,
+.nav-pills>.btn-derecho.active>a:focus,
+.nav-pills>.btn-derecho.active>a:hover
+{
+    background:
+            url(../WoT/img/btnrightDerecho.jpg) no-repeat right top,
+            url(../WoT/img/activeIzq.jpg) repeat-x center top;
+}
+
+.nav-pills>.btn-derecho>a,
+.nav-pills>.btn-derecho>a:focus,
+.nav-pills>.btn-derecho>a:hover
+{
+    background:
+            url(../WoT/img/btn-normal-derecho1.jpg) no-repeat right top,
+            url(../WoT/img/btn-normal-derecho2.jpg) repeat-x center top;
+}
+
+/*Centrar div*/
+
+.centrar
+{
+    display: table;
+    margin: 0 auto;
+}
+
+/* tablas */
+
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th
+{
+    padding: 2px;
+    vertical-align: top;
+    font-size: smaller;
+    border-top: 1px solid #2f2e29;
+}
+
+.td-top
+{
+    border-top: none !important;
+}
+
+.td1
+{
+    width: 60%;
+    color: #6e6e64;
+}
+
+.td2
+{
+    width: 20%;
+    text-align: right;
+}
+
+.td3
+{
+    width: 20%;
+    text-align: right;
+    padding-right: 5px;
 }

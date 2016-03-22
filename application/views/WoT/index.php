@@ -223,19 +223,72 @@
                         </div> <!-- mastery -->
                     </div>
                 </div>
-                <!--
                 <div class="row">
-                    <ul class="nav nav-pills" role="tablist">
-                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-                    </ul>
-                    <!-- Tab panes
+                    <div class="centrar">
+                        <ul class="nav nav-pills" role="tablist">
+                            <li role="presentation" class="btn-izquierdo active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Estadisticas</a></li>
+                            <li role="presentation" class="btn-derecho"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Infografias</a></li>
+                        </ul>
+                    </div>
+                    <!-- Tab panes -->
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="home">.kkpokp..</div>
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <div class="col-sm-4">
+                                    <div class="col-sm-12">
+                                        <p style="text-align: left; font-size: smaller">Resultados Generales</p>
+                                    </div>
+                                    <table class="table table-condensed">
+                                        <tbody>
+                                            <tr>
+                                                <td class="td1 td-top">Batallas</td>
+                                                <td class="td2 td-top"></td>
+                                                <td class="td3 td-top" id="batallas-table1">--</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td1">Victorias</td>
+                                                <td class="td2" id="victorias-table1">--</td>
+                                                <td class="td3" id="victorias-table2">--</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td1">Derrotas</td>
+                                                <td class="td2" id="derrotas-table1">--</td>
+                                                <td class="td3" id="derrotas-table2">--</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td1">Empates</td>
+                                                <td class="td2" id="empates-table1">--</td>
+                                                <td class="td3" id="empates-table2">--</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td1">Batallas Sobrevividas</td>
+                                                <td class="td2" id="bSobrevividas-table1">--</td>
+                                                <td class="td3" id="bSobrevividas-table2">--</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td1">Experiencia Total</td>
+                                                <td class="td2"></td>
+                                                <td class="td3" id="xp-table1">--</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td1">Experiencia Media por Batalla</td>
+                                                <td class="td2" id="BAxp-table1">--</td>
+                                                <td class="td3" id="BAxp-table2">--</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td1">Experiencia Máxima por Batalla</td>
+                                                <td class="td2" id="BMxp-table1">--</td>
+                                                <td class="td3" id="BMxp-table2">--</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                         <div role="tabpanel" class="tab-pane" id="profile">...vnvnnbvn</div>
                     </div>
                 </div>
-                -->
+
             </div> <!-- fin tab estadisticas -->
             <div class="tab-pane" id="green">
                 <h1>Green</h1>

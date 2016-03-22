@@ -70,31 +70,82 @@ function info_user(ID)
             battle_exp_avg = json.data[ID].statistics["all"].battle_avg_xp;
             max_xp = json.data[ID].statistics["all"].max_xp;
             hits = json.data[ID].statistics["all"].hits;
+            draws = json.data[ID].statistics["all"].draws;
+            survived_battles = json.data[ID].statistics["all"].survived_battles;
             shots = json.data[ID].statistics["all"].shots;
             max_frags = json.data[ID].statistics["all"].max_frags;
             damage_dealt = json.data[ID].statistics["all"].damage_dealt;
+            xp = json.data[ID].statistics["all"].xp;
 
 
-            max_xp = formatNumber(max_xp);
+            max_xp_format = formatNumber(max_xp);
+            batallas_format = formatNumber(batallas);
+            victorias_format = formatNumber(wins);
+            derrotas_format = formatNumber(losses);
+            empates_format = formatNumber(draws);
+            bSobrevividas_format = formatNumber(survived_battles);
+            xp_format = formatNumber(xp);
+            
             percent_hits = (hits*100)/ shots;
             percent_hits = percent_hits.toFixed(2);
+
             percent_wins = (wins*100)/ batallas;
             percent_wins = percent_wins.toFixed(2);
+
+            percent_losses = (losses*100)/ batallas;
+            percent_losses = percent_losses.toFixed(2);
+
+            percent_draws = (draws*100)/ batallas;
+            percent_draws = percent_draws.toFixed(2);
+
+            percent_BAxp = (battle_exp_avg*100)/ xp;
+            percent_BAxp = percent_BAxp.toFixed(2);
+
+            percent_BMxp = (max_xp*100)/ xp;
+            percent_BMxp = percent_BMxp.toFixed(2);
+
+            percent_survived_battles = (survived_battles*100)/ batallas;
+            percent_survived_battles = percent_survived_battles.toFixed(2);
+
             battle_avg_dmg = (damage_dealt / batallas).toFixed(0);
 
             // codigo para la tab resumen
-            document.getElementById("batallas").innerHTML = batallas;
+            document.getElementById("batallas").innerHTML = batallas_format;
             document.getElementById("percent_wins").innerHTML = percent_wins+"%";
             document.getElementById("battle_exp_avg").innerHTML = battle_exp_avg;
-            document.getElementById("max_xp").innerHTML = max_xp;
+            document.getElementById("max_xp").innerHTML = max_xp_format;
             document.getElementById("percent_hits").innerHTML = percent_hits+"%";
             document.getElementById("max_frags").innerHTML = max_frags;
             document.getElementById("battle_avg_dmg").innerHTML = battle_avg_dmg;
 
             // codigo para la tab estadisticas
-            document.getElementById("batallas2").innerHTML = batallas;
+            document.getElementById("batallas2").innerHTML = batallas_format;
             document.getElementById("percent_wins2").innerHTML = percent_wins+"%";
             document.getElementById("battle_avg_dmg2").innerHTML = battle_avg_dmg;
+
+            //tabla estadisticas
+
+            document.getElementById("batallas-table1").innerHTML = batallas_format;
+
+            document.getElementById("victorias-table1").innerHTML = percent_wins+"%";
+            document.getElementById("victorias-table2").innerHTML = victorias_format;
+
+            document.getElementById("derrotas-table1").innerHTML = percent_losses+"%";
+            document.getElementById("derrotas-table2").innerHTML = derrotas_format;
+
+            document.getElementById("empates-table1").innerHTML = percent_draws+"%";
+            document.getElementById("empates-table2").innerHTML = empates_format;
+
+            document.getElementById("bSobrevividas-table1").innerHTML = percent_survived_battles+"%";
+            document.getElementById("bSobrevividas-table2").innerHTML = bSobrevividas_format;
+
+            document.getElementById("xp-table1").innerHTML = xp_format;
+
+            document.getElementById("BAxp-table1").innerHTML = percent_BAxp+"%";
+            document.getElementById("BAxp-table2").innerHTML = battle_exp_avg;
+
+            document.getElementById("BMxp-table1").innerHTML = percent_BMxp+"%";
+            document.getElementById("BMxp-table2").innerHTML = max_xp_format;
 
         },
         error: function (XMLHttpRequest, textStatus, errorThrown)
