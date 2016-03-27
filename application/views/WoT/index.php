@@ -15,6 +15,7 @@
         </div>
         <div id="my-tab-content" class="tab-content">
             <div class="tab-pane active" id="resumen">
+                <!-- primera Linea -->
                 <div class="row">
                     <div class="col-sm-2 col-xs-2 col-sm-offset-1">
                         <div class="contenedor">
@@ -124,7 +125,17 @@
                         </div>
                     </div> <!-- mastery -->
                 </div>
-            </div> <!-- fin tab resumen -->
+                <!-- logros valiosos -->
+                <div class="row" style="margin-top: 30px">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <div class="col-sm-12" style="text-align: center">Logros Valiosos</div>
+                        <div class="col-sm-12 fondo_rojo" style="margin-top: 20px">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div><!-- fin tab resumen -->
+
             <div class="tab-pane" id="logros">
                 <div class="row" style="margin-top: 30px">
                     <p style="text-align: center">Logros Valiosos</p>
@@ -213,7 +224,7 @@
                         <div class="col-sm-3 col-xs-3">
                             <div class="contenedor">
                                 <div class="imagen_texto">
-                                    <img src="<?php echo base_url(); ?>asset/src/WoT/img/mastery.png">
+                                    <img src="http://static-ptl-us.gcdn.co/static/3.35.6/common/img/classes/class-ace.png">
                                 </div>
                                 <div class="barrita">
                                     <p class="valor">--</p>
@@ -231,58 +242,107 @@
                         </ul>
                     </div>
                     <!-- Tab panes -->
-                    <div class="tab-content">
+                    <div class="tab-content" style="margin-top: 20px">
                         <div role="tabpanel" class="tab-pane active" id="home">
                             <div class="col-sm-10 col-sm-offset-1">
                                 <div class="col-sm-4">
                                     <div class="col-sm-12">
-                                        <p style="text-align: left; font-size: smaller">Resultados Generales</p>
+                                        <p style="text-align: left; margin-left: -13px; font-size: smaller">Resultados Generales</p>
                                     </div>
                                     <table class="table table-condensed">
                                         <tbody>
-                                            <tr>
-                                                <td class="td1 td-top">Batallas</td>
-                                                <td class="td2 td-top"></td>
-                                                <td class="td3 td-top" id="batallas-table1">--</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="td1">Victorias</td>
-                                                <td class="td2" id="victorias-table1">--</td>
-                                                <td class="td3" id="victorias-table2">--</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="td1">Derrotas</td>
-                                                <td class="td2" id="derrotas-table1">--</td>
-                                                <td class="td3" id="derrotas-table2">--</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="td1">Empates</td>
-                                                <td class="td2" id="empates-table1">--</td>
-                                                <td class="td3" id="empates-table2">--</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="td1">Batallas Sobrevividas</td>
-                                                <td class="td2" id="bSobrevividas-table1">--</td>
-                                                <td class="td3" id="bSobrevividas-table2">--</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="td1">Experiencia Total</td>
-                                                <td class="td2"></td>
-                                                <td class="td3" id="xp-table1">--</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="td1">Experiencia Media por Batalla</td>
-                                                <td class="td2" id="BAxp-table1">--</td>
-                                                <td class="td3" id="BAxp-table2">--</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="td1">Experiencia Máxima por Batalla</td>
-                                                <td class="td2" id="BMxp-table1">--</td>
-                                                <td class="td3" id="BMxp-table2">--</td>
-                                            </tr>
+                                        <tr>
+                                            <td class="td1 td-top">Batallas</td>
+                                            <td class="td2 td-top"></td>
+                                            <td class="td3 td-top" id="batallas-table1">--</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1">Victorias</td>
+                                            <td class="td2" id="victorias-table1">--</td>
+                                            <td class="td3" id="victorias-table2">--</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1">Derrotas</td>
+                                            <td class="td2" id="derrotas-table1">--</td>
+                                            <td class="td3" id="derrotas-table2">--</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1">Empates</td>
+                                            <td class="td2" id="empates-table1">--</td>
+                                            <td class="td3" id="empates-table2">--</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1">Batallas Sobrevividas</td>
+                                            <td class="td2" id="bSobrevividas-table1">--</td>
+                                            <td class="td3" id="bSobrevividas-table2">--</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1">Experiencia Total</td>
+                                            <td class="td2"></td>
+                                            <td class="td3" id="xp-table1">--</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1">Experiencia Media por Batalla</td>
+                                            <td class="td2" id="BAxp-table1">--</td>
+                                            <td class="td3" id="BAxp-table2">--</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1">Experiencia Máxima Ganada</td>
+                                            <td class="td2" id="BMxp-table1">--</td>
+                                            <td class="td3" id="BMxp-table2">--</td>
+                                        </tr>
                                         </tbody>
                                     </table>
-                                </div>
+                                </div> <!-- fin primera tabla -->
+                                <div class="col-sm-4">
+                                    <div class="col-sm-12">
+                                        <p style="text-align: left; margin-left: -13px; font-size: smaller">Rendimiento de Batalla</p>
+                                    </div>
+                                    <table class="table table-condensed">
+                                        <tbody>
+                                        <tr>
+                                            <td class="td1 td-top">Vehiculos Destruidos</td>
+                                            <td class="td2 td-top"></td>
+                                            <td class="td3 td-top" id="frags-table1">--</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1">Vehiculos Detectados</td>
+                                            <td class="td2"></td>
+                                            <td class="td3" id="spotted-table1">--</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1">Disparos Realizados</td>
+                                            <td class="td2"></td>
+                                            <td class="td3" id="shots-table1">--</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1">Disparos Acertados</td>
+                                            <td class="td2" id="hits-table1">--</td>
+                                            <td class="td3" id="hits-table2">--</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1">Disparos Fallidos (Do'h)</td>
+                                            <td class="td2" id="shots_fail-table1">--</td>
+                                            <td class="td3" id="shots_fail-table2">--</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1">Daño Total Inflingido</td>
+                                            <td class="td2"></td>
+                                            <td class="td3" id="damage-table1">--</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1">Daño Medio por Batalla</td>
+                                            <td class="td2" id="BAdmg-table1">--</td>
+                                            <td class="td3" id="BAdmg-table2">--</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1">Daño Máximo en Batalla</td>
+                                            <td class="td2" id="max_damage-table1">--</td>
+                                            <td class="td3" id="max_damage-table2">--</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div> <!-- fin segunda tabla -->
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="profile">...vnvnnbvn</div>

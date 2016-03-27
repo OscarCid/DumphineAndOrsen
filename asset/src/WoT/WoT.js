@@ -76,6 +76,11 @@ function info_user(ID)
             max_frags = json.data[ID].statistics["all"].max_frags;
             damage_dealt = json.data[ID].statistics["all"].damage_dealt;
             xp = json.data[ID].statistics["all"].xp;
+            frags = json.data[ID].statistics["all"].frags;
+            spotted = json.data[ID].statistics["all"].spotted;
+            max_damage = json.data[ID].statistics["all"].max_damage;
+            shots_fail = shots - hits;
+            battle_avg_dmg = (damage_dealt / batallas).toFixed(0);
 
 
             max_xp_format = formatNumber(max_xp);
@@ -85,9 +90,19 @@ function info_user(ID)
             empates_format = formatNumber(draws);
             bSobrevividas_format = formatNumber(survived_battles);
             xp_format = formatNumber(xp);
-            
+            frags_format = formatNumber(frags);
+            spotted_format = formatNumber(spotted);
+            shots_format = formatNumber(shots);
+            hits_format = formatNumber(hits);
+            shots_fail_format = formatNumber(shots_fail);
+            damage_dealt_format = formatNumber(damage_dealt);
+            max_damage_format = formatNumber(max_damage);
+
             percent_hits = (hits*100)/ shots;
             percent_hits = percent_hits.toFixed(2);
+            
+            percent_shots_fail = (shots_fail*100)/ shots;
+            percent_shots_fail = percent_shots_fail.toFixed(2);
 
             percent_wins = (wins*100)/ batallas;
             percent_wins = percent_wins.toFixed(2);
@@ -104,10 +119,16 @@ function info_user(ID)
             percent_BMxp = (max_xp*100)/ xp;
             percent_BMxp = percent_BMxp.toFixed(2);
 
+            percent_BAdmg = (battle_avg_dmg*100)/ damage_dealt;
+            percent_BAdmg = percent_BAdmg.toFixed(2);
+
+            percent_max_damage = (max_damage*100)/ damage_dealt;
+            percent_max_damage = percent_max_damage.toFixed(2);
+
             percent_survived_battles = (survived_battles*100)/ batallas;
             percent_survived_battles = percent_survived_battles.toFixed(2);
 
-            battle_avg_dmg = (damage_dealt / batallas).toFixed(0);
+
 
             // codigo para la tab resumen
             document.getElementById("batallas").innerHTML = batallas_format;
@@ -123,7 +144,7 @@ function info_user(ID)
             document.getElementById("percent_wins2").innerHTML = percent_wins+"%";
             document.getElementById("battle_avg_dmg2").innerHTML = battle_avg_dmg;
 
-            //tabla estadisticas
+            //tabla Resultados Generales
 
             document.getElementById("batallas-table1").innerHTML = batallas_format;
 
@@ -147,6 +168,28 @@ function info_user(ID)
             document.getElementById("BMxp-table1").innerHTML = percent_BMxp+"%";
             document.getElementById("BMxp-table2").innerHTML = max_xp_format;
 
+            //tabla Rendimiento de Batalla
+
+            document.getElementById("frags-table1").innerHTML = frags_format;
+
+            document.getElementById("spotted-table1").innerHTML = spotted_format;
+
+            document.getElementById("shots-table1").innerHTML = shots_format;
+
+            document.getElementById("hits-table1").innerHTML = percent_hits+"%";
+            document.getElementById("hits-table2").innerHTML = hits_format;
+            
+            document.getElementById("shots_fail-table1").innerHTML = percent_shots_fail+"%";
+            document.getElementById("shots_fail-table2").innerHTML = shots_fail_format;
+
+            document.getElementById("damage-table1").innerHTML = damage_dealt_format;
+
+            document.getElementById("BAdmg-table1").innerHTML = percent_BAdmg+"%";
+            document.getElementById("BAdmg-table2").innerHTML = battle_avg_dmg;
+
+            document.getElementById("max_damage-table1").innerHTML = percent_max_damage+"%";
+            document.getElementById("max_damage-table2").innerHTML = max_damage_format;
+
         },
         error: function (XMLHttpRequest, textStatus, errorThrown)
         {
@@ -159,6 +202,7 @@ function logros_user(ID)
 {
     $( ".logro").addClass( "opaco" );
     $( ".b-achivements_wrpr" ).remove();
+    $( ".logro_resumen" ).remove();
     $("#text_event").text("Cargando Logros del usuario");
     $.ajax({
         url: 'https://api.worldoftanks.com/wot/account/achievements/?application_id='+ APIKEY +'&language=es&account_id=' + ID,
@@ -167,12 +211,24 @@ function logros_user(ID)
         data: {},
         success: function (json)
         {
+            var contador = 0;
             for (var logros in json.data[ID].achievements)
             {
                 if ($("."+logros).hasClass('class') != true)
                 {
                     if (json.data[ID].achievements[logros] > 1)
                     {
+                        if (contador <= 6)
+                        {
+                            $( ".fondo_rojo" ).append
+                            (
+                                "<div class='b-achivements_item logro_resumen opaco "+all_logros.data[logros].name+"'>" +
+                                "<img class='centrar' src='"+all_logros.data[logros].image+"'>" +
+                                "</div>"
+                            );
+                            contador++;
+                        }
+
                         $( "."+logros ).removeClass( "opaco" );
                         $( "."+logros ).append
                         (
@@ -186,6 +242,16 @@ function logros_user(ID)
                     else
                     {
                         $( "."+logros ).removeClass( "opaco" );
+                        if (contador <= 6)
+                        {
+                            $( ".fondo_rojo" ).append
+                            (
+                                "<div class='b-achivements_item logro_resumen "+all_logros.data[logros].name+"'>" +
+                                "<img class='centrar' src='"+all_logros.data[logros].image+"'>" +
+                                "</div>"
+                            );
+                            contador++;
+                        }
                     }
                 }
                 else
@@ -225,7 +291,7 @@ function logros()
                     $( "#"+json.data[logros].section )
                         .append(
                         "<div class='col-md-1 col-sm-2 col-xs-3 logro opaco "+json.data[logros].name+"'>" +
-                            "<img src='"+json.data[logros].image+"'>" +
+                            "<img class='centrar' src='"+json.data[logros].image+"'>" +
                         "</div>");
                     //monton de mierda para el tooltipo
 

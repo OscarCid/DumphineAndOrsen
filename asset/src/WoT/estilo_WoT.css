@@ -244,6 +244,13 @@ input, textarea{
     border-radius: 2px;
 }
 
+.b-achivements_item
+{
+    float: left;
+    margin: 5px 0 0 0;
+    width: 14%;
+    position: relative;
+}
 /*     ===========                                      ================
 /*     ===========                                      ================
 /*     ===========             DIV Estadisticas         ================
@@ -349,4 +356,15 @@ input, textarea{
     width: 20%;
     text-align: right;
     padding-right: 5px;
+}
+
+.fondo_rojo
+{
+    background: url(../WoT/img/fondo_rojo.png) repeat;
+    height: 85px;
+}
+
+.logro_resumen
+{
+
 }
