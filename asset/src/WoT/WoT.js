@@ -44,6 +44,7 @@ function buscarID(nickname)
                 document.getElementById("acc_id").innerHTML = "Account ID: "+ id;
                 info_user(id);
                 logros_user(id);
+                player_vehiculos(id);
             }
 
         },
@@ -64,6 +65,9 @@ function info_user(ID)
         success: function (json)
         {
             $("#text_event").text("Cargando Resumen del Usuario");
+
+            created_at = json.data[ID].created_at;
+            last_battle_time = json.data[ID].last_battle_time;
             wins = json.data[ID].statistics["all"].wins;
             losses = json.data[ID].statistics["all"].losses;
             batallas = json.data[ID].statistics["all"].battles;
@@ -82,6 +86,16 @@ function info_user(ID)
             shots_fail = shots - hits;
             battle_avg_dmg = (damage_dealt / batallas).toFixed(0);
 
+            var f_creada = new Date( created_at *1000);
+            var f_ultimaBatalla = new Date( last_battle_time *1000);
+
+            var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+            var diasSemana = new Array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
+
+            fecha_creada = diasSemana[f_creada.getDay()] + ", " + f_creada.getDate() + " de " + meses[f_creada.getMonth()] + " del " + f_creada.getFullYear();
+            ultima_batalla = diasSemana[f_ultimaBatalla.getDay()] + ", " + f_ultimaBatalla.getDate() + " de " + meses[f_ultimaBatalla.getMonth()] + " del " + f_ultimaBatalla.getFullYear() + " " + f_ultimaBatalla.getHours() + ":" + f_ultimaBatalla.getMinutes();
+
+            document.getElementById("fechas").innerHTML = "Creada: " + fecha_creada + "         Ultima Batalla: " + ultima_batalla;
 
             max_xp_format = formatNumber(max_xp);
             batallas_format = formatNumber(batallas);
@@ -258,7 +272,6 @@ function logros_user(ID)
                 {
                     $( "."+logros ).removeClass( "opaco" );
                     $('#'+logros).attr('src',"http://api.worldoftanks.com/static/2.36.2/wot/encyclopedia/achievement/"+logros+json.data[ID].achievements[logros]+".png");
-                    console.log("http://api.worldoftanks.com/static/2.36.2/wot/encyclopedia/achievement/"+logros+json.data[ID].achievements[logros]+".png") ;
                 }
 
             } //end for
@@ -266,7 +279,7 @@ function logros_user(ID)
         },
         error: function (XMLHttpRequest, textStatus, errorThrown)
         {
-            alert("Problemas al obtener el resumen del jugador!");
+            alert("Problemas al obtener los logros del jugador!");
         }
     });
 }
@@ -322,7 +335,25 @@ function logros()
         }, //end json success
         error: function (XMLHttpRequest, textStatus, errorThrown)
         {
-            alert("Problemas al obtener el resumen del jugador!");
+            alert("Problemas al obtener todos los logros");
+        }
+    });
+}
+
+function player_vehiculos(ID)
+{
+    $.ajax({
+        url: 'https://api.worldoftanks.com/wot/account/tanks/?application_id=' + APIKEY + '&account_id=' + ID,
+        type: 'GET',
+        dataType: 'json',
+        data: {},
+        success: function (json)
+        {
+
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown)
+        {
+            alert("Problemas al obtener Informacion de los vehiculos");
         }
     });
 }

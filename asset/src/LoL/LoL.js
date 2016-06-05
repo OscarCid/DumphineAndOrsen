@@ -5,7 +5,7 @@
  */
 var ID = "Dumphine";
 var APIKEY = "b8e25ec6-f1e6-402a-862d-7a315196e650";
-var version_ddragon = "6.4.1";
+var version_ddragon = "6.6.1";
 
 function summonerLookUp()
 {

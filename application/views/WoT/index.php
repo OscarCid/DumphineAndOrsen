@@ -130,7 +130,10 @@
                     <div class="col-sm-10 col-sm-offset-1">
                         <div class="col-sm-12" style="text-align: center">Logros Valiosos</div>
                         <div class="col-sm-12 fondo_rojo" style="margin-top: 20px">
-                            
+                            <!-- aqui van los div automaticos -->
+                        </div>
+                        <div id="fechas" class="col-sm-12" style="margin-top: 20px; text-align: center">
+
                         </div>
                     </div>
                 </div>
