@@ -15,12 +15,14 @@ class Clima extends CI_Controller
         $temp = ($this->input->post('temp'));
         $humedad = ($this->input->post('humedad'));
         $presion = ($this->input->post('presion'));
+        $altitud = ($this->input->post('altitud'));
 
         $data = array(
             'FECHA' => $fecha,
             'TEMPERATURA' => $temp,
             'HUMEDAD' => $humedad,
-            'PRESION' => $presion
+            'PRESION' => $presion,
+            'ALTITUD' => $altitud
         );
 
         $this->Clima_model-> insertar_datos($data);
