@@ -18,8 +18,8 @@ class Clima extends CI_Controller
 
         $data = array(
             'FECHA' => $fecha,
-            'TEMP' => $temp,
-            'HUM' => $humedad,
+            'TEMPERATURA' => $temp,
+            'HUMEDAD' => $humedad,
             'PRESION' => $presion
         );
 
