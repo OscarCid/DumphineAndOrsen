@@ -17,9 +17,10 @@ function actualizar()
             altitud = json[0].altitud;
 
             document.getElementById("fecha").innerHTML = fecha;
-            document.getElementById("temperatura").innerHTML = temperatura;
-            document.getElementById("humedad").innerHTML = humedad;
-            document.getElementById("altitud").innerHTML = altitud;
+            document.getElementById("temperatura").innerHTML = temperatura + " °C";
+            document.getElementById("humedad").innerHTML = humedad + " %";
+            document.getElementById("altitud").innerHTML = altitud + " mts";
+            document.getElementById("presion").innerHTML = presion + " hPa";
         },
         error: function (XMLHttpRequest, textStatus, errorThrown)
         {
