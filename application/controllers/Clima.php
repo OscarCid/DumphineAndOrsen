@@ -14,6 +14,7 @@ class Clima extends CI_Controller
     {
         $script = array
         (
+            '<script src="'.base_url().'asset/src/Clima/Clima.js" type="text/javascript"></script>',
             '<script>
                     $(function(){
                         $("#menu_clima").addClass("active");
