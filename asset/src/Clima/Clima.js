@@ -12,9 +12,14 @@ function actualizar()
         {
             fecha = json[0].fecha;
             temperatura = json[0].temperatura;
+            humedad = json[0].humedad;
+            presion = json[0].presion;
+            altitud = json[0].altitud;
 
-            document.getElementById("fecha").style.background = fecha;
+            document.getElementById("fecha").innerHTML = fecha;
             document.getElementById("temperatura").innerHTML = temperatura;
+            document.getElementById("humedad").innerHTML = humedad;
+            document.getElementById("altitud").innerHTML = altitud;
         },
         error: function (XMLHttpRequest, textStatus, errorThrown)
         {
@@ -25,4 +30,9 @@ function actualizar()
 
 window.setInterval(function(){
    actualizar();
-}, 5000);
+}, 60000);
+
+$(window).load(function () {
+    // Una vez se cargue al completo la página desaparecerá el div "cargando"
+    actualizar();
+});

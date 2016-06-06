@@ -27,8 +27,7 @@ class Clima extends CI_Controller
         $style = array
         (
             '<link href="'.base_url().'asset/src/tipso/tipso.css" rel="stylesheet">',
-            '<link href="'.base_url().'asset/src/tipso/animate.css" rel="stylesheet">',
-            '<link href="'.base_url().'asset/src/LoL/estilo.css" rel="stylesheet">'
+            '<link href="'.base_url().'asset/src/tipso/animate.css" rel="stylesheet">'
         );
         $header['style'] = $style;
         $header['titulo'] = "Estación Meteorológica RasPi3";
@@ -68,6 +67,7 @@ class Clima extends CI_Controller
     {
         $arr = $this->Clima_model-> ultimo_dato();
         header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: http://localhost');
         echo json_encode( $arr );
     }
 

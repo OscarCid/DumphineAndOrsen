@@ -1,4 +1,4 @@
-<body onload="summonerLookUp();">
+<body>
 <div class="container">
     <div class="col-md-6 col-xs-12">
         <div class="panel panel-primary">
