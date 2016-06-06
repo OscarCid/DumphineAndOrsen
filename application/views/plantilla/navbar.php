@@ -16,6 +16,7 @@
                 <li id="menu_lol"><a href="<?php echo site_url('/LoL'); ?>">League of Legends<span class="sr-only">(current)</span></a></li>
                 <li id="menu_youtube"><a href="<?php echo site_url('/Youtube'); ?>">Youtube</a></li>
                 <li id="menu_wot"><a href="<?php echo site_url('/WoT'); ?>">World of Tank</a></li>
+                <li id="menu_clima"><a href="<?php echo site_url('/Clima'); ?>">Estacion Meteorologica RasPi</a></li>
             </ul>
             <!-- Single button -->
             <ul class="nav navbar-nav navbar-right">

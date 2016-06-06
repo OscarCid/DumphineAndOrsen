@@ -20,4 +20,18 @@ class Clima_model extends CI_Model
         }
         else return false;
     }
+
+    function ultimo_dato($data)
+    {
+        $this->db->order_by('name','ASC');
+        $this->db->limit(10);
+        $consulta = $this->db->get('videos');
+        if($consulta->num_rows() > 0)
+        {
+            return $consulta;
+        }
+        else return false;
+    }
+
+
 }
