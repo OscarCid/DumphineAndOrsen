@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
     <title><?php if ((isset($titulo)))
         {
             echo "D&O | ".$titulo;
@@ -14,6 +13,8 @@
     <link href="<?php echo base_url(); ?>asset/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>asset/src/estilo_navbar.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="<?php echo base_url(); ?>asset/jquery-1.12.0.js" type="text/javascript"></script>
     <!-- Estilos Especificos para funciones de vista -->
     <?php
     if ((isset($style)))

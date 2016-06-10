@@ -27,4 +27,11 @@ class Clima_model extends CI_Model
         $this->db->limit(1);
         return $this->db->get('clima')->result();
     }
+
+    function grafico()
+    {
+        $this->db->order_by('fecha','DESC');
+        $this->db->limit(15,1);
+        return $this->db->get('clima')->result();
+    }
 }

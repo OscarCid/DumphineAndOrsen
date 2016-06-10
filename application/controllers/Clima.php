@@ -15,6 +15,9 @@ class Clima extends CI_Controller
         $script = array
         (
             '<script src="'.base_url().'asset/src/Clima/Clima.js" type="text/javascript"></script>',
+            '<script src="'.base_url().'asset/src/highchart/highcharts.js" type="text/javascript"></script>',
+            '<script src="'.base_url().'asset/src/highchart/themes/dark-unica.js"></script>',
+            '<script src="'.base_url().'asset/src/highchart/highcharts-more.js" type="text/javascript"></script>',
             '<script>
                     $(function(){
                         $("#menu_clima").addClass("active");
@@ -27,6 +30,7 @@ class Clima extends CI_Controller
         $style = array
         (
             '<link href="'.base_url().'asset/src/tipso/tipso.css" rel="stylesheet">',
+            '<link href="'.base_url().'asset/src/Clima/Clima.css" rel="stylesheet">',
             '<link href="'.base_url().'asset/src/tipso/animate.css" rel="stylesheet">'
         );
         $header['style'] = $style;
@@ -48,6 +52,8 @@ class Clima extends CI_Controller
     {
         $fecha = ($this->input->post('fecha'));
         $temp = ($this->input->post('temp'));
+        $temp_DHT11 = ($this->input->post('tempDHT11'));
+        $temp_BMP180 = ($this->input->post('tempBMP180'));
         $humedad = ($this->input->post('humedad'));
         $presion = ($this->input->post('presion'));
         $altitud = ($this->input->post('altitud'));
@@ -55,6 +61,8 @@ class Clima extends CI_Controller
         $data = array(
             'FECHA' => $fecha,
             'TEMPERATURA' => $temp,
+            'TEMPERATURA_DHT' => $temp_DHT11,
+            'TEMPERATURA_BMP' => $temp_BMP180,
             'HUMEDAD' => $humedad,
             'PRESION' => $presion,
             'ALTITUD' => $altitud
@@ -67,23 +75,67 @@ class Clima extends CI_Controller
     {
         $arr = $this->Clima_model-> ultimo_dato();
         header('Content-Type: application/json');
-        echo json_encode( $arr );
+        echo json_encode( $arr, JSON_NUMERIC_CHECK );
     }
 
     public function ultimo_temp()
     {
         // Set the JSON header
         header("Content-type: text/json");
-
         // The x value is the current JavaScript time, which is the Unix time multiplied
         // by 1000.
-        $x = time() * 1000;
-        // The y value is a random number
-        $y = rand(0, 100);
 
-        // Create a PHP array and echo it as JSON
-        $ret = array($x, $y);
-        echo json_encode($ret);
+        $datos = $this->Clima_model-> ultimo_dato();
+
+        $ret = array($datos[0]->fecha,floatval($datos[0]->temperatura),floatval($datos[0]->temperatura_dht),floatval($datos[0]->temperatura_bmp));
+        echo json_encode($ret, JSON_NUMERIC_CHECK);
+    }
+
+    public function ultimo_dato_grafico($dato)
+    {
+        // Set the JSON header
+        header("Content-type: text/json");
+        // The x value is the current JavaScript time, which is the Unix time multiplied
+        // by 1000.
+
+        $datos = $this->Clima_model-> ultimo_dato();
+
+        $ret = array($datos[0]->fecha,floatval($datos[0]->$dato));
+        echo json_encode($ret, JSON_NUMERIC_CHECK);
+    }
+
+    public function temp_20min()
+    {
+        header("Content-type: text/json");
+        $datos = $this->Clima_model-> grafico();
+        
+        $category = array();
+        $category['name'] = 'Fecha';
+
+        $series1 = array();
+        $series1['name'] = 'Sensor DS18B20';
+
+        $series2 = array();
+        $series2['name'] = 'Sensor DHT11';
+
+        $series3 = array();
+        $series3['name'] = 'Sensor BMP180';
+
+        foreach (array_reverse($datos) as $row)
+        {
+            $category['data'][] = $row->fecha;
+            $series1['data'][] = floatval($row->temperatura);
+            $series2['data'][] = floatval($row->temperatura_dht);
+            $series3['data'][] = floatval($row->temperatura_bmp);
+        }
+
+        $result = array();
+        array_push($result,$category);
+        array_push($result,$series1);
+        array_push($result,$series2);
+        array_push($result,$series3);
+
+        print json_encode($result, JSON_NUMERIC_CHECK);
     }
 
 }
