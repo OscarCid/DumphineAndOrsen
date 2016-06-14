@@ -1,3 +1,43 @@
 body
-{background-color: #0c0c0c;
+{
+    background-color: #0c0c0c;
+    font-family: 'Fjalla One', sans-serif;
 }
+
+/* practicando edicion css colores nav-tab */
+.nav-tabs
+{
+    border-bottom: 1px solid #2c2c2c;
+}
+
+.nav-tabs > li,
+.nav-tabs > li > a,
+.nav-pills > li,
+.nav-pills > li > a
+{
+    font-size: 12px;
+    font-family: 'Fjalla One', sans-serif;
+    color: #474747;
+}
+
+.nav-tabs > li > a:hover
+{
+    color: #fff9c2;
+    text-shadow: 0 0 3px #FF0000;
+    background-color: #0c0c0c;
+    border: transparent;
+
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus
+{
+    color: #fff9c2 !important;
+    text-shadow: 0 0 3px #FF0000;
+    border: 1px solid #252525;
+    border-bottom: 1px solid #000000;
+    background-color: black;
+}
+
+/* fin codigo css tabs */

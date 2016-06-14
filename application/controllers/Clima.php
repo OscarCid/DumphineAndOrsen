@@ -138,5 +138,32 @@ class Clima extends CI_Controller
         print json_encode($result, JSON_NUMERIC_CHECK);
     }
 
+    public function obtener_maximo($dato, $fecha, $max_min)
+    {
+
+        switch ($fecha)
+        {
+            case "hoy":
+            {
+                $date = date("d");
+                $arr = $this->Clima_model-> $max_min($dato, $date);
+                header('Content-Type: application/json');
+                echo json_encode( $arr, JSON_NUMERIC_CHECK );
+                break;
+            }
+            case "ayer":
+            {
+                $date = date("d", strtotime('-24 hours', time()));
+                $arr = $this->Clima_model-> $max_min($dato, $date);
+                header('Content-Type: application/json');
+                echo json_encode( $arr, JSON_NUMERIC_CHECK );
+                break;
+            }
+            default:
+            {
+                echo 'esta fallando el case';
+            }
+        }
+    }
 }
 ?>

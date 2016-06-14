@@ -1,6 +1,112 @@
 <body>
 <div class="container">
-    <div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1" style="margin-bottom: 10px">
+    <!-- Tabla Ultimo Dato -->
+    <div class="col-md-6 col-xs-12">
+        <div>
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Información Actual</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Máximas y Mínimas</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!-- tab informacion actual -->
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <div class="panel panel-primary">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="bs-example" data-example-id="bordered-table">
+                                        <table class="table table-bordered table-condensed table-responsive">
+                                            <tbody>
+                                            <tr>
+                                                <td><strong>Fecha Ultimo Registro</strong></td>
+                                                <td id="fecha">---</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Temperatura</strong></td>
+                                                <td id="temperatura">---</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Humedad Relativa</strong></td>
+                                                <td id="humedad">---</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Presión</strong></td>
+                                                <td id="presion">---</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Altitud</strong></td>
+                                                <td id="altitud">---</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- tab Maximas y minimas -->
+                <div role="tabpanel" class="tab-pane" id="profile">
+                    <div class="panel panel-primary">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-5" style="padding-top: 5px">
+                                    Minimas y maximas de:
+                                </div>
+                                <div class="col-md-7">
+                                    <select class="form-control input-sm">
+                                        <option>Hoy</option>
+                                        <option>Ayer</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12" style="margin-top: 10px">
+                                    <div class="bs-example" data-example-id="bordered-table">
+                                        <table class="table table-bordered table-condensed table-responsive">
+                                            <tbody>
+                                            <tr>
+                                                <td><strong>Fecha Ultimo Registro</strong></td>
+                                                <td id="fecha">---</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Temperatura</strong></td>
+                                                <td id="temperatura">---</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Humedad Relativa</strong></td>
+                                                <td id="humedad">---</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Presión</strong></td>
+                                                <td id="presion">---</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Altitud</strong></td>
+                                                <td id="altitud">---</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Grafico Temperatura -->
+    <div class="col-md-6 col-xs-12">
+        <div id="grafico_temp" style="height: 400px; margin: 0 auto"></div>
+    </div>
+    <!-- Propaganda -->
+    <div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1" style="margin-top:  10px">
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- Responsive -->
         <ins class="adsbygoogle"
@@ -11,51 +117,6 @@
         <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
-    </div>
-    <!-- Tabla Ultimo Dato -->
-    <div class="col-md-6 col-xs-12">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Información Actual</h3>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="bs-example" data-example-id="bordered-table">
-                            <table class="table table-bordered table-condensed table-responsive">
-                                <tbody>
-                                <tr>
-                                    <td><strong>Fecha Ultimo Registro</strong></td>
-                                    <td id="fecha">---</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Temperatura</strong></td>
-                                    <td id="temperatura">---</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Humedad Relativa</strong></td>
-                                    <td id="humedad">---</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Presión</strong></td>
-                                    <td id="presion">---</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Altitud</strong></td>
-                                    <td id="altitud">---</td>
-                                </tr>
-                                </tbody>
-                            </table>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Grafico Temperatura -->
-    <div class="col-md-6 col-xs-12">
-        <div id="grafico_temp" style="height: 400px; margin: 0 auto"></div>
     </div>
 </div>
 </body>
@@ -112,7 +173,7 @@
             url: 'http://dumphineandorsen.com/Clima/ultimo_temp',
             success: function(point) {
                 var series = chart.series[0],
-                    shift = series.data.length > 20; // shift if the series is longer than 20
+                    shift = series.data.length > 15; // shift if the series is longer than 20
                 // add the point
                 chart.series[0].addPoint([point[0], point[1]], true, shift);
                 chart.series[1].addPoint([point[0], point[2]], true, shift);
@@ -130,7 +191,7 @@
         var options = {
             chart: {
                 renderTo: 'grafico_temp',
-                defaultSeriesType: 'spline',
+                defaultSeriesType: 'line',
                 events: {
                     load: requestData
                 }
@@ -158,7 +219,7 @@
                     text: 'Temperatura'
                 }
             },
-
+            
             series: []
         };
 
