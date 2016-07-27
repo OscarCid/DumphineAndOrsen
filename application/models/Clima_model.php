@@ -35,18 +35,20 @@ class Clima_model extends CI_Model
         return $this->db->get('clima')->result();
     }
 
-    function maximo($dato, $dia)
+    function maxima($dato, $dia)
     {
-        $this->db->order_by($dato,'DESC');
+        $this->db->select('fecha, '.$dato.'');
         $this->db->like('fecha', '-'.$dia.' ');
+        $this->db->order_by($dato,'DESC');
         $this->db->limit(1);
         return $this->db->get('clima')->result();
     }
 
-    function minimo($dato, $dia)
+    function minima($dato, $dia)
     {
-        $this->db->order_by($dato,'ASC');
+        $this->db->select('fecha, '.$dato.'');
         $this->db->like('fecha', '-'.$dia.' ');
+        $this->db->order_by($dato,'ASC');
         $this->db->limit(1);
         return $this->db->get('clima')->result();
     }

@@ -3,16 +3,34 @@
  * Los datos rescatados son proporcionados por RIOT Games
  * Link: https://developer.riotgames.com/api/methods
  */
-var ID = "Dumphine";
+var ID = "";
 var APIKEY = "b8e25ec6-f1e6-402a-862d-7a315196e650";
-var version_ddragon = "6.6.1";
+var version_ddragon = "";
+
+function ddragon()
+{
+        $.ajax({
+            url: 'https://global.api.pvp.net/api/lol/static-data/las/v1.2/versions?api_key=' + APIKEY,
+            type: 'GET',
+            dataType: 'json',
+            data: {
+
+            },
+            success: function (json)
+            {
+                version_ddragon = json[0];
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("error getting ddragon Version");
+            }
+        });
+    
+}
 
 function summonerLookUp()
 {
-    if (ID !== "") {
-
-        var selected = document.getElementById("invocador");
-        ID = selected.options[selected.selectedIndex].text;
+    ddragon();
+    var ID = document.getElementById("invocador").value;
 
         $.ajax({
             url: 'https://na.api.pvp.net/api/lol/las/v1.4/summoner/by-name/' + ID + '?api_key=' + APIKEY,
@@ -22,9 +40,6 @@ function summonerLookUp()
 
             },
             success: function (json) {
-
-                var selected = document.getElementById("invocador");
-                ID = selected.options[selected.selectedIndex].text;
                 var userID = ID.replace(/ /g,'');
 
                 userID = userID.toLowerCase().trim();
@@ -42,10 +57,10 @@ function summonerLookUp()
 
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("error getting Summoner data1!");
+                alert("error general obteniendo datos!");
             }
         });
-    } else {}
+
 }
 
 function lastMatch(summonerID)
@@ -118,7 +133,7 @@ function lastMatch(summonerID)
         },
 
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert("error getting Summoner data2!");
+            alert("error obteniendo datos de la ultima partida!");
         }
     });
 }
@@ -144,7 +159,7 @@ function championName(id)
         },
 
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert("error getting Summoner data2!");
+            alert("error Champion name!");
         }
     });
 }
@@ -287,3 +302,7 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+jQuery(document).ready(function($) {
+    //do jQuery stuff when DOM is ready
+    console.log( "ready!" );
+});

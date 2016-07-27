@@ -5,13 +5,8 @@
         <div id="userData" class="col-md-8 col-md-offset-2 col-xs-12">
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div id="sAvatar"><IMG style='float:left; margin:5px 5px 0px 0px' height='100px' width='100px' SRC='<?php echo base_url(); ?>asset/src/img/icono.png'></div>
-                <select id="invocador"style="margin: 10px" onchange="summonerLookUp();" class="form-control input-medium">
-                    <option selected="selected">Dumphine</option>
-                    <option>Chuh</option>
-                    <option>Drakarex</option>
-                    <option>Órsen</option>
-                    <option>Hi Im Drakarex</option>
-                </select>
+                <input id="invocador" type="text" style="margin: 10px" value="Dumphine" onchange="summonerLookUp();" class="form-control input-medium"/>
+
                 <h5> <p id="sLevel" style="margin: -5px 0px 0px 5px" class="text-left"></p> </h5>
             </div>
             <div class="col-md-6 col-sm-6 col-xs-12">

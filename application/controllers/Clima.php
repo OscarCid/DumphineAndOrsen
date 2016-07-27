@@ -14,6 +14,7 @@ class Clima extends CI_Controller
     {
         $script = array
         (
+            '<script src="'.base_url().'asset/src/scrollbar-plugin/jquery.mCustomScrollbar.js" type="text/javascript"></script>',
             '<script src="'.base_url().'asset/src/Clima/Clima.js" type="text/javascript"></script>',
             '<script src="'.base_url().'asset/src/highchart/highcharts.js" type="text/javascript"></script>',
             '<script src="'.base_url().'asset/src/highchart/themes/dark-unica.js"></script>',
@@ -31,7 +32,8 @@ class Clima extends CI_Controller
         (
             '<link href="'.base_url().'asset/src/tipso/tipso.css" rel="stylesheet">',
             '<link href="'.base_url().'asset/src/Clima/Clima.css" rel="stylesheet">',
-            '<link href="'.base_url().'asset/src/tipso/animate.css" rel="stylesheet">'
+            '<link href="'.base_url().'asset/src/tipso/animate.css" rel="stylesheet">',
+            '<link href="'.base_url().'asset/src/scrollbar-plugin/jquery.mCustomScrollbar.css" rel="stylesheet">'
         );
         $header['style'] = $style;
         $header['titulo'] = "Estación Meteorológica RasPi3";
@@ -75,6 +77,11 @@ class Clima extends CI_Controller
     {
         $arr = $this->Clima_model-> ultimo_dato();
         header('Content-Type: application/json');
+
+        $old_date_timestamp = strtotime($arr[0]->fecha);
+        $new_date = date('d-m-Y H:i', $old_date_timestamp);
+        $arr[0]->fecha = $new_date;
+        
         echo json_encode( $arr, JSON_NUMERIC_CHECK );
     }
 
@@ -108,7 +115,7 @@ class Clima extends CI_Controller
     {
         header("Content-type: text/json");
         $datos = $this->Clima_model-> grafico();
-        
+
         $category = array();
         $category['name'] = 'Fecha';
 
@@ -138,6 +145,31 @@ class Clima extends CI_Controller
         print json_encode($result, JSON_NUMERIC_CHECK);
     }
 
+    public function graphic_15min($dato)
+    {
+        header("Content-type: text/json");
+        $datos = $this->Clima_model-> grafico();
+
+        $category = array();
+        $category['name'] = 'Fecha';
+
+        $series1 = array();
+        $series1['name'] = $dato;
+        
+
+        foreach (array_reverse($datos) as $row)
+        {
+            $category['data'][] = $row->fecha;
+            $series1['data'][] = floatval($row->$dato);
+        }
+
+        $result = array();
+        array_push($result,$category);
+        array_push($result,$series1);
+
+        print json_encode($result, JSON_NUMERIC_CHECK);
+    }
+
     public function obtener_maximo($dato, $fecha, $max_min)
     {
 
@@ -147,14 +179,41 @@ class Clima extends CI_Controller
             {
                 $date = date("d");
                 $arr = $this->Clima_model-> $max_min($dato, $date);
+
+
+                $old_date_timestamp = strtotime($arr[0]->fecha);
+                $new_date = date('d-m-Y H:i', $old_date_timestamp);
+                $arr[0]->fecha = $new_date;
+
+
                 header('Content-Type: application/json');
                 echo json_encode( $arr, JSON_NUMERIC_CHECK );
                 break;
             }
+            
             case "ayer":
             {
                 $date = date("d", strtotime('-24 hours', time()));
                 $arr = $this->Clima_model-> $max_min($dato, $date);
+
+                $old_date_timestamp = strtotime($arr[0]->fecha);
+                $new_date = date('d-m-Y H:i', $old_date_timestamp);
+                $arr[0]->fecha = $new_date;
+                
+                header('Content-Type: application/json');
+                echo json_encode( $arr, JSON_NUMERIC_CHECK );
+                break;
+            }
+
+            case "anteayer":
+            {
+                $date = date("d", strtotime('-48 hours', time()));
+                $arr = $this->Clima_model-> $max_min($dato, $date);
+
+                $old_date_timestamp = strtotime($arr[0]->fecha);
+                $new_date = date('d-m-Y H:i', $old_date_timestamp);
+                $arr[0]->fecha = $new_date;
+
                 header('Content-Type: application/json');
                 echo json_encode( $arr, JSON_NUMERIC_CHECK );
                 break;
