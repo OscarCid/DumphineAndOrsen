@@ -24,12 +24,11 @@ function ddragon()
                 alert("error getting ddragon Version");
             }
         });
-    
+
 }
 
 function summonerLookUp()
 {
-    ddragon();
     var ID = document.getElementById("invocador").value;
 
         $.ajax({
@@ -74,61 +73,96 @@ function lastMatch(summonerID)
         },
         success: function (resp) {
 
-            campeon = resp.games[0].championId;
-            fecha = resp.games[0].createDate;
-            winlost = resp.games[0].stats['win'];
-            spell1 = resp.games[0].spell1;
-            spell2 = resp.games[0].spell2;
-            item1 = resp.games[0].stats['item0'];
-            item2 = resp.games[0].stats['item1'];
-            item3 = resp.games[0].stats['item2'];
-            item4 = resp.games[0].stats['item3'];
-            item5 = resp.games[0].stats['item4'];
-            item6 = resp.games[0].stats['item5'];
-            trinket = resp.games[0].stats['item6'];
-            tipoMatch = resp.games[0].subType;
-            tipoMatch= tipoMatch.toLowerCase();
-            tipoMatch = tipoMatch.replace(/\_/g,' ');
-            tipoMatch = capitalizeFirstLetter(tipoMatch);
-
-            // saber si se gana una partida o no y cambia el color del div
-            if (winlost==true)
+            for (i=0;i<=4;i++)
             {
-                document.getElementById("colorWinLoss").style.background = 'green';
-                document.getElementById("ganoPerdio").innerHTML = "<strong>Win</strong>";
+                campeon = resp.games[i].championId;
+                fecha = resp.games[i].createDate;
+                winlost = resp.games[i].stats['win'];
+                spell1 = resp.games[i].spell1;
+                spell2 = resp.games[i].spell2;
+                K = resp.games[i].stats['championsKilled']; if (null == K) { K = 0; }
+                D = resp.games[i].stats['numDeaths']; if (null == D) { D = 0; }
+                A = resp.games[i].stats['assists']; if (null == A) { A = 0; } //comprobacion null = 0
+                item1 = resp.games[i].stats['item0'];
+                item2 = resp.games[i].stats['item1'];
+                item3 = resp.games[i].stats['item2'];
+                item4 = resp.games[i].stats['item3'];
+                item5 = resp.games[i].stats['item4'];
+                item6 = resp.games[i].stats['item5'];
+                trinket = resp.games[i].stats['item6'];
+                tipoMatch = resp.games[i].subType;
+                tipoMatch= tipoMatch.toLowerCase();
+                tipoMatch = tipoMatch.replace(/\_/g,' ');
+                tipoMatch = capitalizeFirstLetter(tipoMatch)
+
+                lvl = resp.games[i].stats['level'];
+                goldEarned = resp.games[i].stats['goldEarned'];
+                goldSpent = resp.games[i].stats['goldSpent'];
+                minionsKilled = resp.games[i].stats['minionsKilled'];
+
+                timePlayed = resp.games[i].stats['timePlayed'];
+                tpMinutos = Math.floor(timePlayed/60);
+                tpSegundos = timePlayed%60;
+
+                wardKilled = resp.games[i].stats['wardKilled'];
+                wardPlaced = resp.games[i].stats['wardPlaced'];
+
+                // saber si se gana una partida o no y cambia el color del div
+                if (winlost==true)
+                {
+                    document.getElementById("p"+i+"colorWinLoss").style.background = 'green';
+                    document.getElementById("p"+i+"ganoPerdio").innerHTML = "<strong>Win</strong>";
+                }
+                else
+                {
+                    document.getElementById("p"+i+"colorWinLoss").style.background = 'rgba(255, 0, 0, 0.73)';
+                    document.getElementById("p"+i+"ganoPerdio").innerHTML = "<strong>Lose</strong>";
+                }
+
+                // KDA
+                document.getElementById("p"+i+"kda").innerHTML = "K: "+K+" / D: "+D+" / A: "+A;
+                // LVL
+                document.getElementById("p"+i+"lvl").innerHTML = "Nivel: "+lvl;
+                // GOLD
+                document.getElementById("p"+i+"oroGanado").innerHTML = "G. Earned: "+goldEarned;
+                document.getElementById("p"+i+"oroGastado").innerHTML = "G. Spent: "+goldSpent;
+                //Tiempo
+                document.getElementById("p"+i+"tiempo").innerHTML = "Duración: "+tpMinutos+":"+tpSegundos;
+                //CS
+                document.getElementById("p"+i+"cs").innerHTML = "CS: "+minionsKilled;
+                // WARDS
+                document.getElementById("p"+i+"wKilled").innerHTML = "Ward Killed: "+wardKilled;
+                document.getElementById("p"+i+"wPlaced").innerHTML = "Ward Placed: "+wardPlaced;
+
+
+
+                document.getElementById("p"+i+"tipoMatch").innerHTML = tipoMatch;
+
+                //obtencion de la fecha de la ultima partida de lol, lol conchetumare, te pasa la fecha en un formato muy culiao eproch
+                championName(campeon, i);
+                var dateVal ="/Date("+fecha+")/";
+                var date = new Date( parseFloat( dateVal.substr(6 )));
+
+                document.getElementById("p"+i+"fechaLastMatch").innerHTML =
+                    date.getDate() + "/" +
+                    (date.getMonth() + 1) + "/" +
+                    date.getFullYear() + " " +
+                    date.getHours() + ":" +
+                    date.getMinutes();
+
+                //obtencion de la imagen y la descripcion de los summonerSpell utilizando la funcion summoner Spell que esta mas abajo y la id
+                //que la obtengo en estra consulta (asi no pregunto denuevo la misma wea)
+
+                summonerSpell(spell1, "p"+i+"spell");
+                summonerSpell(spell2, "p"+i+"spell2");
+                summonerItems(item1, "p"+i+"item1");
+                summonerItems(item2, "p"+i+"item2");
+                summonerItems(item3, "p"+i+"item3");
+                summonerItems(item4, "p"+i+"item4");
+                summonerItems(item5, "p"+i+"item5");
+                summonerItems(item6, "p"+i+"item6");
+                summonerItems(trinket, "p"+i+"trinket");
             }
-            else
-            {
-                document.getElementById("colorWinLoss").style.background = 'red';
-                document.getElementById("ganoPerdio").innerHTML = "<strong>Lose</strong>";
-            }
-
-            document.getElementById("tipoMatch").innerHTML = tipoMatch;
-
-            //obtencion de la fecha de la ultima partida de lol, lol conchetumare, te pasa la fecha en un formato muy culiao eproch
-            championName(campeon);
-            var dateVal ="/Date("+fecha+")/";
-            var date = new Date( parseFloat( dateVal.substr(6 )));
-
-            document.getElementById("fechaLastMatch").innerHTML =
-                date.getDate() + "/" +
-                (date.getMonth() + 1) + "/" +
-                date.getFullYear() + " " +
-                date.getHours() + ":" +
-                date.getMinutes();
-
-            //obtencion de la imagen y la descripcion de los summonerSpell utilizando la funcion summoner Spell que esta mas abajo y la id
-            //que la obtengo en estra consulta (asi no pregunto denuevo la misma wea)
-
-            summonerSpell(spell1, "spell");
-            summonerSpell(spell2, "spell2");
-            summonerItems(item1, "item1");
-            summonerItems(item2, "item2");
-            summonerItems(item3, "item3");
-            summonerItems(item4, "item4");
-            summonerItems(item5, "item5");
-            summonerItems(item6, "item6");
-            summonerItems(trinket, "trinket");
 
         },
 
@@ -138,7 +172,7 @@ function lastMatch(summonerID)
     });
 }
 
-function championName(id)
+function championName(id, i)
 {
     $.ajax({
         url: "https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion/" + id + "?api_key=" + APIKEY,
@@ -150,12 +184,15 @@ function championName(id)
         success: function (resp) {
             var nombre = resp.name;
             nombre = nombre.replace(/\s+/, "");
-            document.getElementById("champIMG").innerHTML = "<a href='http://gameinfo.las.leagueoflegends.com/es/game-info/champions/"+ nombre.toLowerCase() +"/' data-toggle='tooltip' title='Click en la imagen para mas informacion sobre " + resp.name + "' target='Champion'><IMG style='float:left; margin:5px 5px 5px 0px' height='50px' width='50px' SRC='http://ddragon.leagueoflegends.com/cdn/"+version_ddragon+"/img/champion/"+nombre+".png'></a>";
-            $("body").css({
-                "background-image": "url(http://ddragon.leagueoflegends.com/cdn/img/champion/splash/"+nombre+"_0.jpg)",
-                "background-attachment": "fixed",
-                "background-size": "100%"
-            });
+            document.getElementById("p"+i+"champIMG").innerHTML = "<a href='http://gameinfo.las.leagueoflegends.com/es/game-info/champions/"+ nombre.toLowerCase() +"/' data-toggle='tooltip' title='Click en la imagen para mas informacion sobre " + resp.name + "' target='Champion'><IMG style='float:left; margin:5px 5px 5px 0px' height='50px' width='50px' SRC='http://ddragon.leagueoflegends.com/cdn/"+version_ddragon+"/img/champion/"+nombre+".png'></a>";
+            if (i==0)
+            {
+                $("body").css({
+                    "background-image": "url(http://ddragon.leagueoflegends.com/cdn/img/champion/splash/"+nombre+"_0.jpg)",
+                    "background-attachment": "fixed",
+                    "background-size": "100%"
+                });
+            }
         },
 
         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -305,4 +342,5 @@ function capitalizeFirstLetter(string) {
 jQuery(document).ready(function($) {
     //do jQuery stuff when DOM is ready
     console.log( "ready!" );
+    ddragon();
 });

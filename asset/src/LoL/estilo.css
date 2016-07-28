@@ -3,7 +3,12 @@
 #userData
 {
     margin-top: -15px;
-    background-color: #9d9d9d;
+    background-color: rgba(27, 27, 27, 0.76);
+}
+
+.blanco
+{
+    color: white;
 }
 
 #colorWinLoss
@@ -16,7 +21,12 @@
 
 #matchData
 {
-    background-color: gray;
+    background-color: rgba(27, 27, 27, 0.76);
+}
+
+.match
+{
+    background-color: rgba(27, 27, 27, 0.82);
 }
 
 
@@ -34,6 +44,11 @@
     border:1px solid #122b40;
 }
 
+.info
+{
+    color: white;
+    font-size: 0.7em;
+}
 /* css para tooltip items */
 unique {
     color: darkorange;
