@@ -43,12 +43,40 @@ class LoL extends CI_Controller
         $this -> load -> view ('plantilla/footer');
     }
 
-    public function ultima_partida()
+    public function ultima_partida($ID)
     {
-        $data['titulo'] = "Ultima Partida";
-        $this -> load -> view ('plantilla/header', $data);
-        $this -> load -> view ('LoL/ultima_partida');
-        $this -> load -> view ('plantilla/footer');
+        /*
+        $data = file_get_contents("https://las.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/LA2/5412158?api_key=b8e25ec6-f1e6-402a-862d-7a315196e650");
+        $products = json_decode($data, true);
+
+        header("Access-Control-Allow-Origin: *");
+        header("Content-Type: application/json; charset=UTF-8");
+
+        echo json_encode($products);
+*/
+        set_error_handler(
+            create_function(
+                '$severity, $message, $file, $line',
+                'throw new ErrorException($message, $severity, $severity, $file, $line);'
+            )
+        );
+
+        try
+        {
+            $data = file_get_contents("https://las.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/LA2/".$ID."?api_key=b8e25ec6-f1e6-402a-862d-7a315196e650");
+            $products = json_decode($data, true);
+
+            header("Access-Control-Allow-Origin: *");
+            header("Content-Type: application/json; charset=UTF-8");
+
+            echo json_encode($products);
+        }
+        catch (Exception $e)
+        {
+            header("HTTP/1.0 404 Not Found");
+        }
+
+        restore_error_handler();
     }
 }
 ?>

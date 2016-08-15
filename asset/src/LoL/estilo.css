@@ -1,5 +1,13 @@
 @charset "utf-8";
 
+body
+{
+    background-color: black;
+    color: #ffffff;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+
 #userData
 {
     margin-top: -15px;
@@ -90,3 +98,107 @@ grouplimit{
 .navbar .brand, .navbar .nav > li > a:hover {
     color: red;
 }
+
+/* boton buscar */
+.btn-WoT
+{
+    background-image: linear-gradient(to bottom, #3dac12 0, #154011 100%);
+    border-color: #397934;
+
+}
+
+.btn-WoT:hover
+{
+    color: #fff;
+    text-shadow: 0px 0px 12px rgba(255, 255, 255, 0.75);
+    background-image: linear-gradient(to bottom, #41ca12 0, #1e5f1a 100%);
+    border-color: #397934;
+}
+
+.btn:focus, .btn.active:focus
+{
+    color: #fff;
+    outline: 0 none;
+}
+
+.btn:active:focus
+{
+    color: #fff;
+    outline: 1px solid #05ff00;
+}
+
+/*div cargando */
+
+/* css imagen */
+
+.imagen_centro
+{
+    width: 60%; margin: 0 auto;
+}
+
+.text_id
+{
+    text-align: center;
+    color: #51504B;
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+.cargando
+{
+    position:fixed;
+    z-index: 100;
+    width:100%;
+    height:50%;
+    background: rgba(0, 0, 0, 0.68) url(../img/ajax-loader.gif) no-repeat center;
+}
+
+.evento
+{
+    color: #fff9c2;
+    text-shadow: 0 0 3px #FF0000;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+/* practicando edicion css colores nav-tab */
+.nav-tabs
+{
+    border-bottom: 1px solid #2c2c2c;
+}
+
+.nav-tabs > li,
+.nav-tabs > li > a,
+.nav-pills > li,
+.nav-pills > li > a
+{
+    font-size: 12px;
+    font-family: 'Fjalla One', sans-serif;
+    color: #757154;
+    text-shadow: 0 0 3px #226c1c;
+}
+
+.nav-tabs > li > a:hover
+{
+    color: #b2aeae;
+    text-shadow: 0 0 3px #46e03b;
+    background-color: #0c0c0c;
+    border: transparent;
+
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus
+{
+    color: #fffafa !important;
+    text-shadow: 0 0 4px #3be022;
+    border: 1px solid #252525;
+    border-bottom: 1px solid #000000;
+    background-color: black;
+}
+

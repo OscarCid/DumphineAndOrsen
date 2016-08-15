@@ -147,10 +147,10 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td><strong><a href="https://www.adafruit.com/product/386" target="_blank">DHT11</a></strong></td>
+                                            <td><strong><a href="https://www.adafruit.com/product/385" target="_blank">DHT22</a></strong></td>
                                             <td style="font-size: 11px">
                                                 Humedad (Humedad, Grafico Humedad).<br>
-                                                Temperatura (Sensor DHT11, Grafico Temperatura).
+                                                Temperatura (Sensor DHT22, Grafico Temperatura).
                                             </td>
                                         </tr>
                                         <tr>
@@ -161,11 +161,11 @@
                                             </td>
                                         </tr>
                                     </table>
-
+                                    <p><strong>Historial</strong></p>
                                     <p align="justify" style="margin-top: 10px">
-                                        PD: El sensor DHT11 sera reemplazado por <strike>Chanta</strike> un Sensor
-                                        <a href="https://www.adafruit.com/product/386" target="_blank">DHT22</a> cuando llegue de
-                                        <a href="http://es.aliexpress.com/item/DHT22-Digital-Temperature-and-Humidity-Sensor-AM2302-Module-PCB-with-Cable-for-Arduino-Free-Shipping-Dropshipping/32243070624.html?spm=2114.13010608.0.68.nJQVcT" target="_blank">Aliexpress</a> <br>
+                                        <strong>9/8/2016: </strong>El sensor DHT11 FUE reemplazado por <strike>Chanta</strike> un Sensor
+                                        <a href="https://www.adafruit.com/product/386" target="_blank">DHT22</a> el cual fue adquirido
+                                        <a href="http://es.aliexpress.com/item/DHT22-Digital-Temperature-and-Humidity-Sensor-AM2302-Module-PCB-with-Cable-for-Arduino-Free-Shipping-Dropshipping/32243070624.html?spm=2114.13010608.0.68.nJQVcT" target="_blank">AQUI!</a> <br>
                                     </p>
                                
                                 </div>
@@ -409,7 +409,7 @@
                 labels: {
                     align: 'center',
                     formatter: function() {
-                        return Highcharts.dateFormat('%I:%M', Date.parse(this.value +' UTC'));
+                        return Highcharts.dateFormat('%H:%M', Date.parse(this.value +' UTC'));
                     }
                 }
             },
@@ -456,7 +456,7 @@
                 labels: {
                     align: 'center',
                     formatter: function() {
-                        return Highcharts.dateFormat('%I:%M', Date.parse(this.value +' UTC'));
+                        return Highcharts.dateFormat('%H:%M', Date.parse(this.value +' UTC'));
                     }
                 }
             },
@@ -502,7 +502,7 @@
                 labels: {
                     align: 'center',
                     formatter: function() {
-                        return Highcharts.dateFormat('%I:%M', Date.parse(this.value +' UTC'));
+                        return Highcharts.dateFormat('%H:%M', Date.parse(this.value +' UTC'));
                     }
                 }
             },

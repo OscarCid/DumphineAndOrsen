@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php header("Access-Control-Allow-Origin: *"); ?>
 <html lang="es">
 <head>
     <title><?php if ((isset($titulo)))

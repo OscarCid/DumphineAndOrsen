@@ -29,50 +29,52 @@ function ddragon()
 
 function summonerLookUp()
 {
+    $('.cargando').show();
+    $("#text_event").text("Buscando Invocador");
     var ID = document.getElementById("invocador").value;
+    var jqxhr = $.ajax
+    ({
+        url: 'https://na.api.pvp.net/api/lol/las/v1.4/summoner/by-name/' + ID + '?api_key=' + APIKEY,
+        type: 'GET',
+        dataType: 'json'
+    })
+        .done(function(json)
+        {
+            var userID = ID.replace(/ /g,'');
 
-        $.ajax({
-            url: 'https://na.api.pvp.net/api/lol/las/v1.4/summoner/by-name/' + ID + '?api_key=' + APIKEY,
-            type: 'GET',
-            dataType: 'json',
-            data: {
+            userID = userID.toLowerCase().trim();
 
-            },
-            success: function (json) {
-                var userID = ID.replace(/ /g,'');
+            summonerLevel = json[userID].summonerLevel;
+            summonerID = json[userID].id;
+            summonerAvatar = json[userID].profileIconId;
 
-                userID = userID.toLowerCase().trim();
+            document.getElementById("sLevel").innerHTML = "  Nivel: "+ summonerLevel;
+            // document.getElementById("sID").innerHTML = "<strong>  " + ID + "</strong>";
+            document.getElementById("sAvatar").innerHTML = "<IMG style='float:left; margin:5px 5px 0px 0px' height='100px' width='100px' SRC='http://ddragon.leagueoflegends.com/cdn/"+version_ddragon+"/img/profileicon/"+summonerAvatar+".png'>";
 
-                summonerLevel = json[userID].summonerLevel;
-                summonerID = json[userID].id;
-                summonerAvatar = json[userID].profileIconId;
+            summonerLeague(summonerID);
+            lastMatch(summonerID);
+            actualMatch(summonerID);
+        })
+        .fail(function()
+        {
+            alert("error obteniendo datos del invocador!");
+            $('.cargando').hide();
+        })
+        .always(function() {
 
-                document.getElementById("sLevel").innerHTML = "  Nivel: "+ summonerLevel;
-                // document.getElementById("sID").innerHTML = "<strong>  " + ID + "</strong>";
-                document.getElementById("sAvatar").innerHTML = "<IMG style='float:left; margin:5px 5px 0px 0px' height='100px' width='100px' SRC='http://ddragon.leagueoflegends.com/cdn/"+version_ddragon+"/img/profileicon/"+summonerAvatar+".png'>";
-
-                summonerLeague(summonerID);
-                lastMatch(summonerID);
-
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("error general obteniendo datos!");
-            }
         });
-
 }
 
 function lastMatch(summonerID)
 {
-    $.ajax({
+    var jqxhr = $.ajax
+    ({
         url: "https://las.api.pvp.net/api/lol/las/v1.3/game/by-summoner/" + summonerID + "/recent?api_key=" + APIKEY,
         type: 'GET',
-        dataType: 'json',
-        data: {
-
-        },
-        success: function (resp) {
-
+        dataType: 'json'
+    })
+        .done(function(resp) {
             for (i=0;i<=4;i++)
             {
                 campeon = resp.games[i].championId;
@@ -104,8 +106,8 @@ function lastMatch(summonerID)
                 tpMinutos = Math.floor(timePlayed/60);
                 tpSegundos = timePlayed%60;
 
-                wardKilled = resp.games[i].stats['wardKilled'];
-                wardPlaced = resp.games[i].stats['wardPlaced'];
+                wardKilled = resp.games[i].stats['wardKilled']; if (null == wardKilled) { wardKilled = 0; }
+                wardPlaced = resp.games[i].stats['wardPlaced']; if (null == wardPlaced) { wardPlaced = 0; }
 
                 // saber si se gana una partida o no y cambia el color del div
                 if (winlost==true)
@@ -152,7 +154,6 @@ function lastMatch(summonerID)
 
                 //obtencion de la imagen y la descripcion de los summonerSpell utilizando la funcion summoner Spell que esta mas abajo y la id
                 //que la obtengo en estra consulta (asi no pregunto denuevo la misma wea)
-
                 summonerSpell(spell1, "p"+i+"spell");
                 summonerSpell(spell2, "p"+i+"spell2");
                 summonerItems(item1, "p"+i+"item1");
@@ -162,14 +163,15 @@ function lastMatch(summonerID)
                 summonerItems(item5, "p"+i+"item5");
                 summonerItems(item6, "p"+i+"item6");
                 summonerItems(trinket, "p"+i+"trinket");
+
             }
-
-        },
-
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
+        })
+        .fail(function() {
             alert("error obteniendo datos de la ultima partida!");
-        }
-    });
+            $('.cargando').hide();
+        })
+        .always(function() {
+        });
 }
 
 function championName(id, i)
@@ -182,7 +184,7 @@ function championName(id, i)
 
         },
         success: function (resp) {
-            var nombre = resp.name;
+            var nombre = resp.key;
             nombre = nombre.replace(/\s+/, "");
             document.getElementById("p"+i+"champIMG").innerHTML = "<a href='http://gameinfo.las.leagueoflegends.com/es/game-info/champions/"+ nombre.toLowerCase() +"/' data-toggle='tooltip' title='Click en la imagen para mas informacion sobre " + resp.name + "' target='Champion'><IMG style='float:left; margin:5px 5px 5px 0px' height='50px' width='50px' SRC='http://ddragon.leagueoflegends.com/cdn/"+version_ddragon+"/img/champion/"+nombre+".png'></a>";
             if (i==0)
@@ -197,6 +199,7 @@ function championName(id, i)
 
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("error Champion name!");
+            $('.cargando').hide();
         }
     });
 }
@@ -207,9 +210,6 @@ function summonerLeague(summonerID)
         url: "https://las.api.pvp.net/api/lol/las/v2.5/league/by-summoner/" + summonerID + "/entry?api_key=" + APIKEY,
         type: 'GET',
         dataType: 'json',
-        data: {
-
-        },
         success: function (resp) {
 
             liga = resp[summonerID][0].name;
@@ -251,14 +251,10 @@ function summonerSpell(spellID, divSpell)
         url: "https://global.api.pvp.net/api/lol/static-data/las/v1.2/summoner-spell/"+ spellID + "?spellData=tooltip&api_key=" + APIKEY,
         type: 'GET',
         dataType: 'json',
-        data: {
-
-        },
-
         success: function (resp)
         {
             nombreSpell = resp.key;
-            españolSpell = resp.name;
+            espanolSpell = resp.name;
             descripcion = resp.description;
             document.getElementById(divSpell).innerHTML = "<IMG style='float:left' height='25px' width='25px' SRC='http://ddragon.leagueoflegends.com/cdn/"+version_ddragon+"/img/spell/"+nombreSpell+".png'></a>";
             $('#'+divSpell).tipso({
@@ -272,7 +268,7 @@ function summonerSpell(spellID, divSpell)
                 background          : '#000'
 
             });
-            jQuery('#'+divSpell).tipso('update', 'titleContent', "<nombreItem><strong>" + españolSpell + "</strong></nombreItem>");
+            jQuery('#'+divSpell).tipso('update', 'titleContent', "<nombreItem><strong>" + espanolSpell + "</strong></nombreItem>");
             jQuery('#'+divSpell).tipso('update', 'content', descripcion);
         },
 
@@ -285,62 +281,114 @@ function summonerSpell(spellID, divSpell)
 
 function summonerItems(itemID, divItem)
 {
-
-    $.ajax({
-        url: "https://global.api.pvp.net/api/lol/static-data/las/v1.2/item/"+ itemID + "?itemData=sanitizedDescription&api_key=" + APIKEY,
-        type: 'GET',
-        dataType: 'json',
-        data: {
-
-        },
-
-        success: function (resp)
+    if (null == itemID)
+    {
+        document.getElementById(divItem).innerHTML = "<IMG style='float:left' height='25px' width='25px' SRC='asset/src/img/items/0.png'>";
+        $('#'+divItem).tipso({
+            titleBackground     : '#000',
+            width               : 200,
+            maxWidth            : '500',
+            size                : 'default',
+            html                : 'true',
+            background          : '#000'
+        });
+        jQuery('#'+divItem).tipso('update', 'titleContent', "No Item");
+        jQuery('#'+divItem).tipso('update', 'content', 'No Item');
+        if(divItem == "p4trinket")
         {
-            descripcion = resp.description;
-            nombre = resp.name;
-            document.getElementById(divItem).innerHTML = "<IMG style='float:left' height='25px' width='25px' SRC='http://ddragon.leagueoflegends.com/cdn/"+version_ddragon+"/img/item/"+ itemID +".png'>";
-            $('#'+divItem).tipso({
-                speed               : 100,
-                titleBackground     : '#000',
-                width               : 300,
-                maxWidth            : '500',
-                animationIn         : 'flipInX',
-                animationOut        : 'flipOutX',
-                size                : 'default',
-                background          : '#000'
-
-            });
-            jQuery('#'+divItem).tipso('update', 'titleContent', "<nombreItem><strong>" + nombre + "</strong></nombreItem>");
-            jQuery('#'+divItem).tipso('update', 'content', descripcion);
-
-        },
-
-        error: function (XMLHttpRequest, textStatus, errorThrown)
-        {
-            document.getElementById(divItem).innerHTML = "<IMG style='float:left' height='25px' width='25px' SRC='asset/src/img/items/0.png'>";
-            $('#'+divItem).tipso({
-                titleBackground     : '#000',
-                width               : 200,
-                maxWidth            : '500',
-                size                : 'default',
-                html                : 'true',
-                background          : '#000'
-            });
-            jQuery('#'+divItem).tipso('update', 'titleContent', "No Item");
-            jQuery('#'+divItem).tipso('update', 'content', 'No Item');
-
+            $('.cargando').hide();
         }
-    });
+    }
+    else
+    {
+        var jqxhr = $.ajax
+            ({
+                url: "https://global.api.pvp.net/api/lol/static-data/las/v1.2/item/" + itemID + "?itemData=sanitizedDescription&api_key=" + APIKEY,
+                type: 'GET',
+                dataType: 'json'
+            })
+            .done(function(resp)
+            {
+                descripcion = resp.description;
+                nombre = resp.name;
+                $("#text_event").text("Buscando Item "+nombre+"!");
+                document.getElementById(divItem).innerHTML = "<IMG style='float:left' height='25px' width='25px' SRC='http://ddragon.leagueoflegends.com/cdn/" + version_ddragon + "/img/item/" + itemID + ".png'>";
+                $('#' + divItem).tipso({
+                    speed: 100,
+                    titleBackground: '#000',
+                    width: 300,
+                    maxWidth: '500',
+                    animationIn: 'flipInX',
+                    animationOut: 'flipOutX',
+                    size: 'default',
+                    background: '#000'
+
+                });
+                jQuery('#' + divItem).tipso('update', 'titleContent', "<nombreItem><strong>" + nombre + "</strong></nombreItem>");
+                jQuery('#' + divItem).tipso('update', 'content', descripcion);
+            })
+            .fail(function()
+            {
+                alert("error obteniendo Item "+itemID+"!");
+                $('.cargando').hide();
+            })
+            .always(function() {
+                if(divItem == "p4trinket")
+                {
+                    $('.cargando').hide();
+                }
+
+            });
+    }
 }
 
+function actualMatch(ID)
+{
+
+    var jqxhr = $.ajax
+        ({
+            url: "http://localhost/DumphineAndOrsen/LoL/ultima_partida/"+ ID,
+            type: 'GET',
+            dataType: 'json'
+        })
+        .done(function(resp)
+        {
+            $("#enpartidaicono").removeClass();
+            $("#enpartidaicono").addClass("glyphicon glyphicon-ok");
+            $("#enpartidaicono").css('color', '#00CC00');
+        })
+        .fail(function()
+        {
+            $("#enpartidaicono").removeClass();
+            $("#enpartidaicono").addClass("glyphicon glyphicon-remove");
+            $("#enpartidaicono").css('color', 'red');
+        })
+        .always(function()
+        {
+
+        });
+
+}
 
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-jQuery(document).ready(function($) {
-    //do jQuery stuff when DOM is ready
-    console.log( "ready!" );
+$(document).ready(function(){
     ddragon();
+    $('#search').click(function()
+    {
+        $("#text_event").text("Buscando Invocador");
+        if ($('#invocador').val() != '')
+        {
+            $('.cargando').show();
+            summonerLookUp();
+        }
+        else
+        {
+            $("#text_event").text("no se ingreso una ID");
+            alert("Ingrese un Nickname Porfavor");
+        }
+    });
 });

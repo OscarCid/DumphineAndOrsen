@@ -123,7 +123,7 @@ class Clima extends CI_Controller
         $series1['name'] = 'Sensor DS18B20';
 
         $series2 = array();
-        $series2['name'] = 'Sensor DHT11';
+        $series2['name'] = 'Sensor DHT22';
 
         $series3 = array();
         $series3['name'] = 'Sensor BMP180';
@@ -177,7 +177,7 @@ class Clima extends CI_Controller
         {
             case "hoy":
             {
-                $date = date("d");
+                $date = date("m-d");
                 $arr = $this->Clima_model-> $max_min($dato, $date);
 
 
@@ -193,7 +193,7 @@ class Clima extends CI_Controller
             
             case "ayer":
             {
-                $date = date("d", strtotime('-24 hours', time()));
+                $date = date("m-d", strtotime('-24 hours', time()));
                 $arr = $this->Clima_model-> $max_min($dato, $date);
 
                 $old_date_timestamp = strtotime($arr[0]->fecha);
@@ -207,7 +207,7 @@ class Clima extends CI_Controller
 
             case "anteayer":
             {
-                $date = date("d", strtotime('-48 hours', time()));
+                $date = date("m-d", strtotime('-48 hours', time()));
                 $arr = $this->Clima_model-> $max_min($dato, $date);
 
                 $old_date_timestamp = strtotime($arr[0]->fecha);
