@@ -42,7 +42,7 @@ header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Dispo
             <div class="menu">
                 <ul id="tabs" class="nav nav-tabs " data-tabs="tabs">
                     <li class="active"><a href="#last5" data-toggle="tab">Ultimas 5 Partidas</a></li>
-                    <li id="esPartidaTab" class="disabled"><a href="#actual" data-toggle="tab">Partida Actual</a></li>
+                    <li id="enPartidaTab"><a href="#actual" data-toggle="tab">Partida Actual</a></li>
                 </ul>
             </div>
             <div class="tab-content">
@@ -356,7 +356,317 @@ header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Dispo
                 </div>
                 <!-- PARTIDA ACTUAL -->
                 <div role="tabpanel" class="tab-pane" id="actual">
-                    EN DESARROLLO :D...
+                <div class="row fondo_partida" style="margin: 0 2px 0 2px">
+                        <div class="tipo_partida" id="tipo_partida">
+                            ARAM
+                            <small class="MapName" id="mapId">Grieta del Invocador</small>
+                        </div>
+                        <!-- Tabla Equipo Azul -->
+                        <div class="table-responsive">
+                            <table class="table tabla-100">
+                                <thead>
+                                    <tr>
+                                        <th class="name">Nombre</th>
+                                        <th class="champion">Campeon</th>
+                                        <th class="current-season">Actual</th>
+                                        <th class="last-season">Prev</th>
+                                        <th class="nw">Wins</th>
+                                        <th class="rw">Ranked Wins</th>
+                                        <th class="kd">KDA</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="tabla-0">
+                                        <td>
+                                            <img style='float:left;' id="imgsumm-0" height='28px' width='28px' SRC='http://ddragon.leagueoflegends.com/cdn/6.16.2/img/profileicon/1110.png'>
+                                            <span class="nombre-0">Baltrask</span>
+                                        </td>
+                                        <td id="campeon-0">
+                                            <img style='float:left;' id="champ-0" height='28px' width='28px' SRC='http://ddragon.leagueoflegends.com/cdn/6.16.2/img/champion/Aatrox.png'>
+                                            <div class="summoner-spells">
+                                                <img class="summoner-spell tip" id="spell0-0" src="http://media-noxia.cursecdn.com/avatars/thumbnails/43/250/28/28/SummonerHaste.png">
+                                                <img class="summoner-spell tip" id="spell1-0" src="http://media-noxia.cursecdn.com/avatars/thumbnails/43/248/28/28/SummonerFlash.png">
+                                            </div>
+                                            <span id="text_champ-0">
+                                                Vladimir <span class="num-games tip">(1)</span>
+                                            </span>
+                                        </td>
+                                        <td id="liga-0">
+                                            <div class="ranking">
+                                                <IMG style='float:left;' id="imgranking-0" height='28px' width='28px' src='http://localhost/DumphineAndOrsen/asset/src/img/tier/platinum_v.png'><span id="ranking-0">Platinum V (<b>65 LP</b>)</span>
+                                            </div>
+                                        </td>
+                                        <td class="center">
+                                            <IMG style='float:left;' height='28px' width='28px' src='http://localhost/DumphineAndOrsen/asset/src/img/tier/bronze_v.png'>
+                                        </td>
+                                        <td class="center">1,259</td>
+                                        <td class="center">61  /  37</td>
+                                        <td class="center">5 / 6.7 / 11.7</td>
+                                    </tr>
+                                    <tr class="tabla-1">
+                                        <td>
+                                            <img style='float:left;' id="imgsumm-1" height='28px' width='28px' SRC='http://ddragon.leagueoflegends.com/cdn/6.16.2/img/profileicon/1110.png'>
+                                            <span class="nombre-1">Baltrask</span>
+                                        </td>
+                                        <td id="campeon-1">
+                                            <img style='float:left;' id="champ-1" height='28px' width='28px' SRC='http://ddragon.leagueoflegends.com/cdn/6.16.2/img/champion/Aatrox.png'>
+                                            <div class="summoner-spells">
+                                                <img class="summoner-spell tip" id="spell0-1" src="http://ddragon.leagueoflegends.com/cdn/6.16.2/img/spell/SummonerFlash.png">
+                                                <img class="summoner-spell tip" id="spell1-1" src="http://media-noxia.cursecdn.com/avatars/thumbnails/43/248/28/28/SummonerFlash.png">
+                                            </div>
+                                            <span id="text_champ-1">
+                                                Vladimir <b class="num-games tip">(1)</b>
+                                            </span>
+                                        </td>
+                                        <td id="liga-0">
+                                            <div class="ranking">
+                                                <IMG style='float:left;' height='28px' width='28px' src='http://localhost/DumphineAndOrsen/asset/src/img/tier/platinum_v.png'><span>Platinum V (<b>65 LP</b>)</span>
+                                            </div>
+                                        </td>
+                                        <td class="center">
+                                            <IMG style='float:left;' height='28px' width='28px' src='http://localhost/DumphineAndOrsen/asset/src/img/tier/bronze_v.png'>
+                                        </td>
+                                        <td class="center">1,259</td>
+                                        <td class="center">61  /  37</td>
+                                        <td class="center">5 / 6.7 / 11.7</td>
+                                    </tr>
+                                    <tr class="tabla-2">
+                                        <td>
+                                            <img style='float:left;' id="imgsumm-2" height='28px' width='28px' SRC='http://ddragon.leagueoflegends.com/cdn/6.16.2/img/profileicon/1110.png'>
+                                            <span class="nombre-2">Baltrask</span>
+                                        </td>
+                                        <td id="campeon-2">
+                                            <img style='float:left;' id="champ-2" height='28px' width='28px' SRC='http://ddragon.leagueoflegends.com/cdn/6.16.2/img/champion/Aatrox.png'>
+                                            <div class="summoner-spells">
+                                                <img class="summoner-spell tip" id="spell0-2" src="http://ddragon.leagueoflegends.com/cdn/6.16.2/img/spell/SummonerFlash.png">
+                                                <img class="summoner-spell tip" id="spell1-2" src="http://media-noxia.cursecdn.com/avatars/thumbnails/43/248/28/28/SummonerFlash.png">
+                                            </div>
+                                            <span id="text_champ-2">
+                                                Vladimir <b class="num-games tip">(1)</b>
+                                            </span>
+                                        </td>
+                                        <td id="liga-2">
+                                            <div class="ranking">
+                                                <IMG style='float:left;' height='28px' width='28px' src='http://localhost/DumphineAndOrsen/asset/src/img/tier/platinum_v.png'><span>Platinum V (<b>65 LP</b>)</span>
+                                            </div>
+                                        </td>
+                                        <td class="center">
+                                            <IMG style='float:left;' height='28px' width='28px' src='http://localhost/DumphineAndOrsen/asset/src/img/tier/bronze_v.png'>
+                                        </td>
+                                        <td class="center">1,259</td>
+                                        <td class="center">61  /  37</td>
+                                        <td class="center">5 / 6.7 / 11.7</td>
+                                    </tr>
+                                    <tr class="tabla-3">
+                                        <td>
+                                            <img style='float:left;' id="imgsumm-3" height='28px' width='28px' SRC='http://ddragon.leagueoflegends.com/cdn/6.16.2/img/profileicon/1110.png'>
+                                            <span class="nombre-3">Baltrask</span>
+                                        </td>
+                                        <td id="campeon-3">
+                                            <img style='float:left;' id="champ-3" height='28px' width='28px' SRC='http://ddragon.leagueoflegends.com/cdn/6.16.2/img/champion/Aatrox.png'>
+                                            <div class="summoner-spells">
+                                                <img class="summoner-spell tip" id="spell0-3" src="http://ddragon.leagueoflegends.com/cdn/6.16.2/img/spell/SummonerFlash.png">
+                                                <img class="summoner-spell tip" id="spell1-3" src="http://media-noxia.cursecdn.com/avatars/thumbnails/43/248/28/28/SummonerFlash.png">
+                                            </div>
+                                            <span id="text_champ-3">
+                                                Vladimir <b class="num-games tip">(1)</b>
+                                            </span>
+                                        </td>
+                                        <td id="liga-3">
+                                            <div class="ranking">
+                                                <IMG style='float:left;' height='28px' width='28px' src='http://localhost/DumphineAndOrsen/asset/src/img/tier/platinum_v.png'><span>Platinum V (<b>65 LP</b>)</span>
+                                            </div>
+                                        </td>
+                                        <td class="center">
+                                            <IMG style='float:left;' height='28px' width='28px' src='http://localhost/DumphineAndOrsen/asset/src/img/tier/bronze_v.png'>
+                                        </td>
+                                        <td class="center">1,259</td>
+                                        <td class="center">61  /  37</td>
+                                        <td class="center">5 / 6.7 / 11.7</td>
+                                    </tr>
+                                    <tr class="tabla-4">
+                                        <td>
+                                            <img style='float:left;' id="imgsumm-4" height='28px' width='28px' SRC='http://ddragon.leagueoflegends.com/cdn/6.16.2/img/profileicon/1110.png'>
+                                            <span class="nombre-4">Baltrask</span>
+                                        </td>
+                                        <td id="campeon-4">
+                                            <img style='float:left;' id="champ-4" height='28px' width='28px' SRC='http://ddragon.leagueoflegends.com/cdn/6.16.2/img/champion/Aatrox.png'>
+                                            <div class="summoner-spells">
+                                                <img class="summoner-spell tip" id="spell0-4" src="http://ddragon.leagueoflegends.com/cdn/6.16.2/img/spell/SummonerFlash.png">
+                                                <img class="summoner-spell tip" id="spell1-4" src="http://media-noxia.cursecdn.com/avatars/thumbnails/43/248/28/28/SummonerFlash.png">
+                                            </div>
+                                            <span id="text_champ-4">
+                                                Vladimir <b class="num-games tip">(1)</b>
+                                            </span>
+                                        </td>
+                                        <td id="liga-4">
+                                            <div class="ranking">
+                                                <IMG style='float:left;' height='28px' width='28px' src='http://localhost/DumphineAndOrsen/asset/src/img/tier/platinum_v.png'><span>Platinum V (<b>65 LP</b>)</span>
+                                            </div>
+                                        </td>
+                                        <td class="center">
+                                            <IMG style='float:left;' height='28px' width='28px' src='http://localhost/DumphineAndOrsen/asset/src/img/tier/bronze_v.png'>
+                                        </td>
+                                        <td class="center">1,259</td>
+                                        <td class="center">61  /  37</td>
+                                        <td class="center">5 / 6.7 / 11.7</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Tabla Equipo Rojo -->
+                        <div class="table-responsive">
+                            <table class="table tabla-200">
+                                <thead>
+                                <tr>
+                                    <th class="name">Nombre</th>
+                                    <th class="champion">Campeon</th>
+                                    <th class="current-season">Actual</th>
+                                    <th class="last-season">Prev</th>
+                                    <th class="nw">Wins</th>
+                                    <th class="rw">Ranked Wins</th>
+                                    <th class="kd">KDA</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="tabla-5">
+                                    <td>
+                                        <img style='float:left;' id="imgsumm-5" height='28px' width='28px' SRC='http://ddragon.leagueoflegends.com/cdn/6.16.2/img/profileicon/1110.png'>
+                                        <span class="nombre-5">Baltrask</span>
+                                    </td>
+                                    <td id="campeon-5">
+                                        <img style='float:left;' id="champ-5" height='28px' width='28px' SRC='http://ddragon.leagueoflegends.com/cdn/6.16.2/img/champion/Aatrox.png'>
+                                        <div class="summoner-spells">
+                                            <img class="summoner-spell tip" id="spell0-5" src="http://ddragon.leagueoflegends.com/cdn/6.16.2/img/spell/SummonerFlash.png">
+                                            <img class="summoner-spell tip" id="spell1-5" src="http://media-noxia.cursecdn.com/avatars/thumbnails/43/248/28/28/SummonerFlash.png">
+                                        </div>
+                                            <span id="text_champ-5">
+                                                Vladimir <b class="num-games tip">(1)</b>
+                                            </span>
+                                    </td>
+                                    <td id="liga-5">
+                                        <div class="ranking">
+                                            <IMG style='float:left;' height='28px' width='28px' src='http://localhost/DumphineAndOrsen/asset/src/img/tier/platinum_v.png'><span>Platinum V (<b>65 LP</b>)</span>
+                                        </div>
+                                    </td>
+                                    <td class="center">
+                                        <IMG style='float:left;' height='28px' width='28px' src='http://localhost/DumphineAndOrsen/asset/src/img/tier/bronze_v.png'>
+                                    </td>
+                                    <td class="center">1,259</td>
+                                    <td class="center">61  /  37</td>
+                                    <td class="center">5 / 6.7 / 11.7</td>
+                                </tr>
+                                <tr class="tabla-6">
+                                    <td>
+                                        <img style='float:left;' id="imgsumm-6" height='28px' width='28px' SRC='http://ddragon.leagueoflegends.com/cdn/6.16.2/img/profileicon/1110.png'>
+                                        <span class="nombre-6">Baltrask</span>
+                                    </td>
+                                    <td id="campeon-6">
+                                        <img style='float:left;' id="champ-6" height='28px' width='28px' SRC='http://ddragon.leagueoflegends.com/cdn/6.16.2/img/champion/Aatrox.png'>
+                                        <div class="summoner-spells">
+                                            <img class="summoner-spell tip" id="spell0-6" src="http://ddragon.leagueoflegends.com/cdn/6.16.2/img/spell/SummonerFlash.png">
+                                            <img class="summoner-spell tip" id="spell1-6" src="http://media-noxia.cursecdn.com/avatars/thumbnails/43/248/28/28/SummonerFlash.png">
+                                        </div>
+                                            <span id="text_champ-6">
+                                                Vladimir <b class="num-games tip">(1)</b>
+                                            </span>
+                                    </td>
+                                    <td id="liga-6">
+                                        <div class="ranking">
+                                            <IMG style='float:left;' height='28px' width='28px' src='http://localhost/DumphineAndOrsen/asset/src/img/tier/platinum_v.png'><span>Platinum V (<b>65 LP</b>)</span>
+                                        </div>
+                                    </td>
+                                    <td class="center">
+                                        <IMG style='float:left;' height='28px' width='28px' src='http://localhost/DumphineAndOrsen/asset/src/img/tier/bronze_v.png'>
+                                    </td>
+                                    <td class="center">1,259</td>
+                                    <td class="center">61  /  37</td>
+                                    <td class="center">5 / 6.7 / 11.7</td>
+                                </tr>
+                                <tr class="tabla-7">
+                                    <td>
+                                        <img style='float:left;' id="imgsumm-7" height='28px' width='28px' SRC='http://ddragon.leagueoflegends.com/cdn/6.16.2/img/profileicon/1110.png'>
+                                        <span class="nombre-7">Baltrask</span>
+                                    </td>
+                                    <td id="campeon-7">
+                                        <img style='float:left;' id="champ-7" height='28px' width='28px' SRC='http://ddragon.leagueoflegends.com/cdn/6.16.2/img/champion/Aatrox.png'>
+                                        <div class="summoner-spells">
+                                            <img class="summoner-spell tip" id="spell0-7" src="http://ddragon.leagueoflegends.com/cdn/6.16.2/img/spell/SummonerFlash.png">
+                                            <img class="summoner-spell tip" id="spell1-7" src="http://media-noxia.cursecdn.com/avatars/thumbnails/43/248/28/28/SummonerFlash.png">
+                                        </div>
+                                            <span id="text_champ-7">
+                                                Vladimir <b class="num-games tip">(1)</b>
+                                            </span>
+                                    </td>
+                                    <td id="liga-7">
+                                        <div class="ranking">
+                                            <IMG style='float:left;' height='28px' width='28px' src='http://localhost/DumphineAndOrsen/asset/src/img/tier/platinum_v.png'><span>Platinum V (<b>65 LP</b>)</span>
+                                        </div>
+                                    </td>
+                                    <td class="center">
+                                        <IMG style='float:left;' height='28px' width='28px' src='http://localhost/DumphineAndOrsen/asset/src/img/tier/bronze_v.png'>
+                                    </td>
+                                    <td class="center">1,259</td>
+                                    <td class="center">61  /  37</td>
+                                    <td class="center">5 / 6.7 / 11.7</td>
+                                </tr>
+                                <tr class="tabla-8">
+                                    <td>
+                                        <img style='float:left;' id="imgsumm-8" height='28px' width='28px' SRC='http://ddragon.leagueoflegends.com/cdn/6.16.2/img/profileicon/1110.png'>
+                                        <span class="nombre-8">Baltrask</span>
+                                    </td>
+                                    <td id="campeon-8">
+                                        <img style='float:left;' id="champ-8" height='28px' width='28px' SRC='http://ddragon.leagueoflegends.com/cdn/6.16.2/img/champion/Aatrox.png'>
+                                        <div class="summoner-spells">
+                                            <img class="summoner-spell tip" id="spell0-8" src="http://ddragon.leagueoflegends.com/cdn/6.16.2/img/spell/SummonerFlash.png">
+                                            <img class="summoner-spell tip" id="spell1-8" src="http://media-noxia.cursecdn.com/avatars/thumbnails/43/248/28/28/SummonerFlash.png">
+                                        </div>
+                                            <span id="text_champ-8">
+                                                Vladimir <b class="num-games tip">(1)</b>
+                                            </span>
+                                    </td>
+                                    <td id="liga-8">
+                                        <div class="ranking">
+                                            <IMG style='float:left;' height='28px' width='28px' src='http://localhost/DumphineAndOrsen/asset/src/img/tier/platinum_v.png'><span>Platinum V (<b>65 LP</b>)</span>
+                                        </div>
+                                    </td>
+                                    <td class="center">
+                                        <IMG style='float:left;' height='28px' width='28px' src='http://localhost/DumphineAndOrsen/asset/src/img/tier/bronze_v.png'>
+                                    </td>
+                                    <td class="center">1,259</td>
+                                    <td class="center">61  /  37</td>
+                                    <td class="center">5 / 6.7 / 11.7</td>
+                                </tr>
+                                <tr class="tabla-9">
+                                    <td>
+                                        <img style='float:left;' id="imgsumm-9" height='28px' width='28px' SRC='http://ddragon.leagueoflegends.com/cdn/6.16.2/img/profileicon/1110.png'>
+                                        <span class="nombre-9">Baltrask</span>
+                                    </td>
+                                    <td id="campeon-9">
+                                        <img style='float:left;' id="champ-9" height='28px' width='28px' SRC='http://ddragon.leagueoflegends.com/cdn/6.16.2/img/champion/Aatrox.png'>
+                                        <div class="summoner-spells">
+                                            <img class="summoner-spell tip" id="spell0-9" src="http://ddragon.leagueoflegends.com/cdn/6.16.2/img/spell/SummonerFlash.png">
+                                            <img class="summoner-spell tip" id="spell1-9" src="http://media-noxia.cursecdn.com/avatars/thumbnails/43/248/28/28/SummonerFlash.png">
+                                        </div>
+                                            <span id="text_champ-9">
+                                                Vladimir <b class="num-games tip">(1)</b>
+                                            </span>
+                                    </td>
+                                    <td id="liga-9">
+                                        <div class="ranking">
+                                            <IMG style='float:left;' height='28px' width='28px' src='http://localhost/DumphineAndOrsen/asset/src/img/tier/platinum_v.png'><span>Platinum V (<b>65 LP</b>)</span>
+                                        </div>
+                                    </td>
+                                    <td class="center">
+                                        <IMG style='float:left;' height='28px' width='28px' src='http://localhost/DumphineAndOrsen/asset/src/img/tier/bronze_v.png'>
+                                    </td>
+                                    <td class="center">1,259</td>
+                                    <td class="center">61  /  37</td>
+                                    <td class="center">5 / 6.7 / 11.7</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                 </div>
             </div>
         </div>

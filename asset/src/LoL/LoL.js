@@ -54,7 +54,7 @@ function summonerLookUp()
 
             summonerLeague(summonerID);
             lastMatch(summonerID);
-            actualMatch(summonerID);
+            actualMatch(summonerID, userID);
         })
         .fail(function()
         {
@@ -342,26 +342,126 @@ function summonerItems(itemID, divItem)
     }
 }
 
-function actualMatch(ID)
+/* despues de aqui se repiten algunas funciones para la parte de partida actual */
+
+function actualMatch(ID, userID)
 {
 
     var jqxhr = $.ajax
         ({
-            url: "http://localhost/DumphineAndOrsen/LoL/ultima_partida/"+ ID,
+            url: "http://dumphineandorsen.com/LoL/ultima_partida/"+ ID,
             type: 'GET',
             dataType: 'json'
         })
         .done(function(resp)
         {
+            // Cambio de icono a que si esta en partida
             $("#enpartidaicono").removeClass();
             $("#enpartidaicono").addClass("glyphicon glyphicon-ok");
             $("#enpartidaicono").css('color', '#00CC00');
+
+            //Habilita pestaña de partida actual
+            $('#enPartidaTab').removeClass("disabled");
+            $('#enPartidaTab').click(function(event)
+            {
+                if (!$(this).hasClass('disabled')) {
+                    return true;
+                }
+            });
+
+            $("tr").removeClass("tabla-seleccionado");
+            //cambia de pestaña en caso de que este en la contraria
+            $('.nav-tabs a[href="#actual"]').tab('show');
+
+            //que empieze el webeo
+            gameMode = resp.gameMode;
+            mapId= resp.mapId;
+
+            $("#tipo_partida").text(gameMode);
+            /* switch para el mapa, asi no uso otra api */
+            switch(mapId)
+            {
+                case 8:
+                {
+                    $("#tipo_partida").append("<small class='MapName' id='mapId'>Cicatriz de Cristal</small>");
+                    break;
+                }
+                case 10:
+                {
+                    $("#tipo_partida").append("<small class='MapName' id='mapId'>Bosque Retorcido</small>");
+                    break;
+                }
+                case 11:
+                {
+                    $("#tipo_partida").append("<small class='MapName' id='mapId'>Grieta del Invocador</small>");
+                    break;
+                }
+                case 12:
+                {
+                    $("#tipo_partida").append("<small class='MapName' id='mapId'>Abismo de los Lamentos</small>");
+                    break;
+                }
+                default:
+                {
+                    document.getElementById("mapId").innerHTML = mapId;
+                }
+            }
+
+            for (i=0; i<=9; i++)
+            {
+                $(".tabla-"+i).removeClass("tabla-seleccionado");
+                /* nombre summoner */
+                nombre = resp["participants"][i].summonerName;
+                summonerId = resp["participants"][i].summonerId;
+                nombre_comparacion = nombre.toLowerCase().trim();
+                spell0 = resp["participants"][i].spell1Id;
+                spell1 = resp["participants"][i].spell2Id;
+                championId = resp["participants"][i].championId;
+                profileIconId = resp["participants"][i].profileIconId;
+                estajugando = 0;
+
+                $(".nombre-"+i).text(nombre);
+                if (nombre_comparacion == userID)
+                {
+                    estajugando = 0;
+                    $(".tabla-"+i).addClass("tabla-seleccionado");
+                    estajugando = 1;
+                }
+
+                /*icono summoner*/
+                $("#imgsumm-"+i).attr("src","http://ddragon.leagueoflegends.com/cdn/"+version_ddragon+"/img/profileicon/"+profileIconId+".png");
+
+
+                /*Spell Summoner */
+                summonerSpell_actual(spell0, "spell0-"+i);
+                summonerSpell_actual(spell1, "spell1-"+i);
+                /*Champion Info*/
+                championActual(championId, i, "champ-"+i, estajugando);
+                ligaActual(summonerId, i);
+            }
+
+
         })
         .fail(function()
         {
+            // Cambio de icono a que NO esta en partida
             $("#enpartidaicono").removeClass();
             $("#enpartidaicono").addClass("glyphicon glyphicon-remove");
             $("#enpartidaicono").css('color', 'red');
+
+
+
+            $('#enPartidaTab').attr('class', 'disabled');
+            $('#enPartidaTab').click(function(event)
+            {
+                if ($(this).hasClass('disabled')) {
+                    return false;
+                }
+            });
+            //cambia de pestaña en caso de que este en la contraria
+            $('.nav-tabs a[href="#last5"]').tab('show');
+
+
         })
         .always(function()
         {
@@ -370,6 +470,109 @@ function actualMatch(ID)
 
 }
 
+function summonerSpell_actual(spellID, classSummoner)
+{
+
+    $.ajax({
+        url: "https://global.api.pvp.net/api/lol/static-data/las/v1.2/summoner-spell/"+ spellID + "?spellData=tooltip&api_key=" + APIKEY,
+        type: 'GET',
+        dataType: 'json',
+        success: function (resp)
+        {
+            nombreSpell = resp.key;
+            espanolSpell = resp.name;
+            descripcion = resp.description;
+            $("#"+classSummoner).attr("src","http://ddragon.leagueoflegends.com/cdn/"+version_ddragon+"/img/spell/"+nombreSpell+".png");
+            $("#"+classSummoner).tipso({
+                speed               : 100,
+                titleBackground     : '#000',
+                width               : 300,
+                maxWidth            : '500',
+                animationIn         : 'flipInX',
+                animationOut        : 'flipOutX',
+                size                : 'default',
+                background          : '#000'
+
+            });
+            jQuery("#"+classSummoner).tipso('update', 'titleContent', "<nombreItem><strong>" + espanolSpell + "</strong></nombreItem>");
+            jQuery("#"+classSummoner).tipso('update', 'content', descripcion);
+        },
+
+        error: function (XMLHttpRequest, textStatus, errorThrown)
+        {
+
+        }
+    });
+}
+
+
+function championActual(id, i, imgID, estajugando)
+{
+    $.ajax({
+        url: "https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion/" + id + "?api_key=" + APIKEY,
+        type: 'GET',
+        dataType: 'json',
+        data: {
+
+        },
+        success: function (resp) {
+            var nombre = resp.key;
+            $("#text_champ-"+i).text(nombre);
+            nombre = nombre.replace(/\s+/, "");
+            $("#"+imgID).attr("src","http://ddragon.leagueoflegends.com/cdn/"+version_ddragon+"/img/champion/"+nombre+".png");
+
+            if (estajugando==1)
+            {
+                $("body").css({
+                    "background-image": "url(http://ddragon.leagueoflegends.com/cdn/img/champion/splash/"+nombre+"_0.jpg)",
+                    "background-attachment": "fixed",
+                    "background-size": "100%"
+                });
+            }
+        },
+
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("error Champion name!");
+            $('.cargando').hide();
+        }
+    });
+}
+
+function ligaActual(summonerID, i)
+{
+    $.ajax({
+        url: "https://las.api.pvp.net/api/lol/las/v2.5/league/by-summoner/" + summonerID + "/entry?api_key=" + APIKEY,
+        type: 'GET',
+        dataType: 'json',
+        success: function (resp) {
+
+            liga = resp[summonerID][0].name;
+            lp = resp[summonerID][0].entries[0].leaguePoints;
+            win = resp[summonerID][0].entries[0].wins;
+            loss = resp[summonerID][0].entries[0].losses;
+            //tier divison fotitos kawaiiii
+
+            tier = resp[summonerID][0].tier;
+            tier = tier.toLowerCase();
+
+            division = resp[summonerID][0].entries[0].division;
+            division = division.toLowerCase();
+
+            $("#imgranking-"+i).attr("src","asset/src/img/tier/"+tier+"_"+division+".png");
+            $("#ranking-"+i).text(capitalizeFirstLetter(tier) + " " + division.toUpperCase() + " (" + lp + ")");
+            /*capitalizeFirstLetter(tier) + " " + division.toUpperCase()*/
+
+        },
+
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            document.getElementById("tier").innerHTML = "<IMG style='float:right; margin:0px 0px 0px 5px' height='110px' width='110px' SRC='asset/src/img/tier/unranked.png'>";
+            document.getElementById("liga").innerHTML = "--";
+            document.getElementById("lp").innerHTML = " -- LP";
+            document.getElementById("division").innerHTML = "<strong>Unranked</strong>";
+            document.getElementById("winLose").innerHTML = "Wins: -- Losses: --"
+        }
+    });
+}
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);

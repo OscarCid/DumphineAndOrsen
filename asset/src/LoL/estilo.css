@@ -202,3 +202,111 @@ grouplimit{
     background-color: black;
 }
 
+/* partida actual */
+
+.fondo_partida
+{
+    background-color: rgba(27, 27, 27, 0.47);
+}
+
+.table>tbody>tr>td
+{  border-top: 1px solid #606060;  }
+
+th {
+     text-align: center;
+}
+
+.center
+{
+    text-align: center;
+}
+
+.tabla-100>thead>tr>td, .tabla-100>thead>tr>th {
+    background-color: #1f93d3;
+    font-size: 12px;
+    color: white;
+    white-space: nowrap;
+}
+
+.tabla-100 tbody tr:nth-child(odd) td {
+    background: rgba(15, 15, 15, 0.41);
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.tabla-100 tbody tr:nth-child(even) td {
+    background: rgba(31, 147, 211, 0.42);
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.tabla-200>thead>tr>td, .tabla-200>thead>tr>th {
+    background-color: #d30d0c;
+    font-size: 12px;
+    color: white;
+    white-space: nowrap;
+}
+
+.tabla-200 tbody tr:nth-child(odd) td {
+    background: rgba(15, 15, 15, 0.41);
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.tabla-200 tbody tr:nth-child(even) td {
+    background: rgba(211, 1, 7, 0.42);
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.tabla-seleccionado {
+    background: rgba(211, 203, 62, 0.57);
+}
+
+.tipo_partida
+{
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    /*border: 1px solid #848888;*/
+    color: rgba(255, 255, 255, 1);
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.52);
+}
+
+.tipo_partida>small {
+    margin-left: 8px;
+    padding-left: 8px;
+    border-left: 1px solid #bec4c4;
+    font-size: 11px;
+    color: #ffffff;
+    font-weight: normal;
+}
+
+table tbody tr td .summoner-spells {
+    float: left;
+    position: relative;
+    width: 13px;
+    height: 28px;
+    margin-left: 2px;
+}
+
+.summoner-spells .summoner-spell {
+    height: 13px;
+    width: 13px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.summoner-spells .summoner-spell+.summoner-spell {
+    bottom: 0;
+    top: auto;
+}
+
+table tbody tr td span {
+    line-height: 28px;
+    padding-left: 6px;
+}
