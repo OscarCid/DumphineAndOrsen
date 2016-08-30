@@ -3,28 +3,21 @@
  * Los datos rescatados son proporcionados por RIOT Games
  * Link: https://developer.riotgames.com/api/methods
  */
-var ID = "";
-var APIKEY = "b8e25ec6-f1e6-402a-862d-7a315196e650";
-var version_ddragon = "";
 
 function ddragon()
 {
-        $.ajax({
-            url: 'https://global.api.pvp.net/api/lol/static-data/las/v1.2/versions?api_key=' + APIKEY,
-            type: 'GET',
-            dataType: 'json',
-            data: {
-
-            },
-            success: function (json)
-            {
-                version_ddragon = json[0];
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("error getting ddragon Version");
-            }
-        });
-
+    $.ajax({
+        url: 'http://dumphineandorsen.com/LoL/data/ddragon/0',
+        type: 'GET',
+        dataType: 'json',
+        success: function (json)
+        {
+            version_ddragon = json[0];
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("error getting ddragon Version");
+        }
+    });
 }
 
 function summonerLookUp()
@@ -34,7 +27,7 @@ function summonerLookUp()
     var ID = document.getElementById("invocador").value;
     var jqxhr = $.ajax
     ({
-        url: 'https://na.api.pvp.net/api/lol/las/v1.4/summoner/by-name/' + ID + '?api_key=' + APIKEY,
+        url: 'http://dumphineandorsen.com/LoL/data/summoner/' + ID,
         type: 'GET',
         dataType: 'json'
     })
@@ -70,7 +63,7 @@ function lastMatch(summonerID)
 {
     var jqxhr = $.ajax
     ({
-        url: "https://las.api.pvp.net/api/lol/las/v1.3/game/by-summoner/" + summonerID + "/recent?api_key=" + APIKEY,
+        url: "http://dumphineandorsen.com/LoL/data/last_match/" + summonerID,
         type: 'GET',
         dataType: 'json'
     })
@@ -177,7 +170,7 @@ function lastMatch(summonerID)
 function championName(id, i)
 {
     $.ajax({
-        url: "https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion/" + id + "?api_key=" + APIKEY,
+        url: "http://dumphineandorsen.com/LoL/data/champ_info/" + id,
         type: 'GET',
         dataType: 'json',
         data: {
@@ -207,7 +200,7 @@ function championName(id, i)
 function summonerLeague(summonerID)
 {
     $.ajax({
-        url: "https://las.api.pvp.net/api/lol/las/v2.5/league/by-summoner/" + summonerID + "/entry?api_key=" + APIKEY,
+        url: "http://dumphineandorsen.com/LoL/data/summoner_league/" + summonerID,
         type: 'GET',
         dataType: 'json',
         success: function (resp) {
@@ -248,7 +241,7 @@ function summonerSpell(spellID, divSpell)
 {
 
     $.ajax({
-        url: "https://global.api.pvp.net/api/lol/static-data/las/v1.2/summoner-spell/"+ spellID + "?spellData=tooltip&api_key=" + APIKEY,
+        url: "http://dumphineandorsen.com/LoL/data/summoner_spell/" + spellID,
         type: 'GET',
         dataType: 'json',
         success: function (resp)
@@ -270,6 +263,12 @@ function summonerSpell(spellID, divSpell)
             });
             jQuery('#'+divSpell).tipso('update', 'titleContent', "<nombreItem><strong>" + espanolSpell + "</strong></nombreItem>");
             jQuery('#'+divSpell).tipso('update', 'content', descripcion);
+
+            if(divSpell == "p4spell")
+            {
+                $('.cargando').hide();
+            }
+
         },
 
         error: function (XMLHttpRequest, textStatus, errorThrown)
@@ -303,7 +302,7 @@ function summonerItems(itemID, divItem)
     {
         var jqxhr = $.ajax
             ({
-                url: "https://global.api.pvp.net/api/lol/static-data/las/v1.2/item/" + itemID + "?itemData=sanitizedDescription&api_key=" + APIKEY,
+                url: "http://dumphineandorsen.com/LoL/data/summoner_items/" + itemID,
                 type: 'GET',
                 dataType: 'json'
             })
@@ -331,13 +330,6 @@ function summonerItems(itemID, divItem)
             {
                 alert("error obteniendo Item "+itemID+"!");
                 $('.cargando').hide();
-            })
-            .always(function() {
-                if(divItem == "p4trinket")
-                {
-                    $('.cargando').hide();
-                }
-
             });
     }
 }
@@ -376,9 +368,189 @@ function actualMatch(ID, userID)
             //que empieze el webeo
             gameMode = resp.gameMode;
             mapId= resp.mapId;
+            gameQueueConfigId = resp.gameQueueConfigId;
 
             $("#tipo_partida").text(gameMode);
-            /* switch para el mapa, asi no uso otra api */
+
+            /* switch para el el tipo de partida */
+            switch(gameQueueConfigId)
+            {
+                case 0:
+                {
+                    $("#tipo_partida").text("Custom");
+                    break;
+                }
+                case 8:
+                {
+                    $("#tipo_partida").text("Normal 3v3");
+                    break;
+                }
+                case 2:
+                {
+                    $("#tipo_partida").text("Normal 5v5 Blind Pick");
+                    break;
+                }
+                case 14:
+                {
+                    $("#tipo_partida").text("Normal 5v5 Draft Pick");
+                    break;
+                }
+                case 4:
+                {
+                    $("#tipo_partida").text("Ranked Solo 5v5");
+                    break;
+                }
+                case 41:
+                {
+                    $("#tipo_partida").text("Ranked Team 3v3");
+                    break;
+                }
+                case 42:
+                {
+                    $("#tipo_partida").text("Ranked Team 5v5");
+                    break;
+                }
+                case 16:
+                {
+                    $("#tipo_partida").text("Dominion 5v5 Blind Pick");
+                    break;
+                }
+                case 17:
+                {
+                    $("#tipo_partida").text("Dominion 5v5 Draft Pick");
+                    break;
+                }
+                case 25:
+                {
+                    $("#tipo_partida").text("Dominion Coop VS AI");
+                    break;
+                }
+                case 31:
+                {
+                    $("#tipo_partida").text("Summoner's Rift Coop vs AI Intro Bot");
+                    break;
+                }
+                case 32:
+                {
+                    $("#tipo_partida").text("Summoner's Rift Coop vs AI Beginner Bot");
+                    break;
+                }
+                case 33:
+                {
+                    $("#tipo_partida").text("Historical Summoner's Rift Coop vs AI Intermediate Bot");
+                    break;
+                }
+                case 52:
+                {
+                    $("#tipo_partida").text("Twisted Treeline Coop vs AI");
+                    break;
+                }
+                case 61:
+                {
+                    $("#tipo_partida").text("Team Builder");
+                    break;
+                }
+                case 65:
+                {
+                    $("#tipo_partida").text("ARAM!");
+                    break;
+                }
+                case 70:
+                {
+                    $("#tipo_partida").text("One for All");
+                    break;
+                }
+                case 75:
+                {
+                    $("#tipo_partida").text("Hexakill");
+                    break;
+                }
+                case 76:
+                {
+                    $("#tipo_partida").text("URF! URF! URF!");
+                    break;
+                }
+                case 78:
+                {
+                    $("#tipo_partida").text("One for All (Mirror mode)");
+                    break;
+                }
+                case 83:
+                {
+                    $("#tipo_partida").text("URF BOTS");
+                    break;
+                }
+                case 91:
+                {
+                    $("#tipo_partida").text("Doom Bots Rank 1");
+                    break;
+                }
+                case 92:
+                {
+                    $("#tipo_partida").text("Doom Bots Rank 2");
+                    break;
+                }
+                case 93:
+                {
+                    $("#tipo_partida").text("Doom Bots Rank 5");
+                    break;
+                }
+                case 96:
+                {
+                    $("#tipo_partida").text("Ascension");
+                    break;
+                }
+                case 98:
+                {
+                    $("#tipo_partida").text("Hexakill");
+                    break;
+                }
+                case 100:
+                {
+                    $("#tipo_partida").text("Butcher's Bridge");
+                    break;
+                }
+                case 300:
+                {
+                    $("#tipo_partida").text("King Poro");
+                    break;
+                }
+                case 310:
+                {
+                    $("#tipo_partida").text("Nemesis");
+                    break;
+                }
+                case 313:
+                {
+                    $("#tipo_partida").text("Black Market Brawlers");
+                    break;
+                }
+                case 315:
+                {
+                    $("#tipo_partida").text("Nexus Siege");
+                    break;
+                }
+                case 317:
+                {
+                    $("#tipo_partida").text("Definitely Not Dominion");
+                    break;
+                }
+                case 400:
+                {
+                    $("#tipo_partida").text("Normal 5v5 Draft Pick");
+                    break;
+                }
+                case 410:
+                {
+                    $("#tipo_partida").text("Ranked 5v5 Draft Pick");
+                    break;
+                }
+                default:
+                {
+                    document.getElementById("mapId").innerHTML = mapId;
+                }
+            }
+            /* switch para el mapa */
             switch(mapId)
             {
                 case 8:
@@ -414,6 +586,7 @@ function actualMatch(ID, userID)
                 nombre = resp["participants"][i].summonerName;
                 summonerId = resp["participants"][i].summonerId;
                 nombre_comparacion = nombre.toLowerCase().trim();
+                nombre_comparacion = nombre_comparacion.replace(/ /g,'');
                 spell0 = resp["participants"][i].spell1Id;
                 spell1 = resp["participants"][i].spell2Id;
                 championId = resp["participants"][i].championId;
@@ -437,9 +610,16 @@ function actualMatch(ID, userID)
                 summonerSpell_actual(spell1, "spell1-"+i);
                 /*Champion Info*/
                 championActual(championId, i, "champ-"+i, estajugando);
-                ligaActual(summonerId, i);
             }
 
+            for (let i=0; i<=9; i++) {
+                setTimeout( function timer(){
+                    summonerId = resp["participants"][i].summonerId;
+                    championId = resp["participants"][i].championId;
+                    ligaActual(summonerId, i);
+                    kda(summonerId, i , championId);
+                }, i*3000 );
+            }
 
         })
         .fail(function()
@@ -474,7 +654,7 @@ function summonerSpell_actual(spellID, classSummoner)
 {
 
     $.ajax({
-        url: "https://global.api.pvp.net/api/lol/static-data/las/v1.2/summoner-spell/"+ spellID + "?spellData=tooltip&api_key=" + APIKEY,
+        url: "http://dumphineandorsen.com/LoL/data/summoner_spell/" + spellID,
         type: 'GET',
         dataType: 'json',
         success: function (resp)
@@ -509,7 +689,7 @@ function summonerSpell_actual(spellID, classSummoner)
 function championActual(id, i, imgID, estajugando)
 {
     $.ajax({
-        url: "https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion/" + id + "?api_key=" + APIKEY,
+        url: "http://dumphineandorsen.com/LoL/data/champ_info/" + id,
         type: 'GET',
         dataType: 'json',
         data: {
@@ -541,7 +721,7 @@ function championActual(id, i, imgID, estajugando)
 function ligaActual(summonerID, i)
 {
     $.ajax({
-        url: "https://las.api.pvp.net/api/lol/las/v2.5/league/by-summoner/" + summonerID + "/entry?api_key=" + APIKEY,
+        url: "http://dumphineandorsen.com/LoL/data/summoner_league/" + summonerID,
         type: 'GET',
         dataType: 'json',
         success: function (resp) {
@@ -550,6 +730,9 @@ function ligaActual(summonerID, i)
             lp = resp[summonerID][0].entries[0].leaguePoints;
             win = resp[summonerID][0].entries[0].wins;
             loss = resp[summonerID][0].entries[0].losses;
+            total = win + loss;
+            percent = (win * 100) / total;
+            percent = percent.toFixed(2);
             //tier divison fotitos kawaiiii
 
             tier = resp[summonerID][0].tier;
@@ -559,19 +742,91 @@ function ligaActual(summonerID, i)
             division = division.toLowerCase();
 
             $("#imgranking-"+i).attr("src","asset/src/img/tier/"+tier+"_"+division+".png");
-            $("#ranking-"+i).text(capitalizeFirstLetter(tier) + " " + division.toUpperCase() + " (" + lp + ")");
-            /*capitalizeFirstLetter(tier) + " " + division.toUpperCase()*/
+            $("#ranking-"+i).text(capitalizeFirstLetter(tier) + " " + division.toUpperCase() + " (" + lp + " LP)");
+            $("#wl-"+i).html("<font color='#41CA12'>" + win + " </font> / <font color='red'> " + loss + "</font>");
+            $("#percent-"+i).html(percent + "%");
 
         },
 
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            document.getElementById("tier").innerHTML = "<IMG style='float:right; margin:0px 0px 0px 5px' height='110px' width='110px' SRC='asset/src/img/tier/unranked.png'>";
-            document.getElementById("liga").innerHTML = "--";
-            document.getElementById("lp").innerHTML = " -- LP";
-            document.getElementById("division").innerHTML = "<strong>Unranked</strong>";
-            document.getElementById("winLose").innerHTML = "Wins: -- Losses: --"
+        error: function (XMLHttpRequest, textStatus, errorThrown)
+        {
+            $("#imgranking-"+i).attr("src","asset/src/img/tier/unranked.png");
+            $("#ranking-"+i).text("Unranked!");
+            $("#wl-"+i).html("- / -");
+            $("#percent-"+i).html("--%");
         }
     });
+}
+
+function kda(ID, divID, champID)
+{
+    var jqxhr = $.ajax
+        ({
+            url: "http://dumphineandorsen.com/LoL/data/season/"+ ID,
+            type: 'GET',
+            dataType: 'json'
+        })
+        .done(function(resp)
+        {
+            siono = false;
+
+            for (i=0;i<resp["champions"].length;i++)
+            {
+                if (resp["champions"][i].id == champID)
+                {
+                    partidas = resp["champions"][i]["stats"].totalSessionsPlayed;
+                    k = resp["champions"][i]["stats"].totalChampionKills / partidas; k = k.toFixed(1);
+                    d = resp["champions"][i]["stats"].totalDeathsPerSession / partidas; d = d.toFixed(1);
+                    a = resp["champions"][i]["stats"].totalAssists / partidas; a = a.toFixed(1);
+
+                    $("#kda-"+divID).html(k + " / " + d + " / " + a);
+                    $(".num-games-"+divID).html("("+partidas+")");
+
+                    siono = true;
+
+                    $(".num-games-"+divID).tipso({
+                        speed               : 100,
+                        titleBackground     : '#000',
+                        width               : 300,
+                        maxWidth            : '500',
+                        animationIn         : 'flipInX',
+                        animationOut        : 'flipOutX',
+                        size                : 'default',
+                        background          : '#000'
+
+                    });
+                    jQuery(".num-games-"+divID).tipso('update', 'titleContent', "<nombreItem><strong>Datos totales del campeon</strong></nombreItem>");
+                    jQuery(".num-games-"+divID).tipso('update', 'content', "" +
+                        "<strong>Partidas: </strong>" + partidas + "<br>" +
+                        "<strong>Asesinatos: </strong>"+ formatNumber(resp["champions"][i]["stats"].totalChampionKills)+"<br>" +
+                        "<strong>Muertes: </strong>"+ formatNumber(resp["champions"][i]["stats"].totalDeathsPerSession) +"<br>" +
+                        "<strong>Asistencias: </strong>"+ formatNumber(resp["champions"][i]["stats"].totalAssists) +"<br>"+
+                        "-------------------------------<br> " +
+                        "<strong>Asesinato Doble: </strong>"+ formatNumber(resp["champions"][i]["stats"].totalDoubleKills) +"<br>"+
+                        "<strong>Asesinato Triple: </strong>"+ formatNumber(resp["champions"][i]["stats"].totalTripleKills) +"<br>"+
+                        "<strong>Asesinato Cuadruple: </strong>"+ formatNumber(resp["champions"][i]["stats"].totalQuadraKills) +"<br>"+
+                        "<strong>PE-PE-PENTAKILL!!!: </strong>"+ formatNumber(resp["champions"][i]["stats"].totalPentaKills) +"<br>"+
+                        "-------------------------------<br> ");
+                }
+            }
+
+            if (siono == false)
+            {
+                $("#kda-"+divID).html(" - / - / - ");
+                $(".num-games-"+divID).html("(0)");
+            }
+
+        })
+        .fail(function()
+        {
+            $("#kda-"+divID).html(" - / - / - ");
+            $(".num-games-"+divID).html("(0)");
+        })
+        .always(function()
+        {
+
+        });
+
 }
 
 function capitalizeFirstLetter(string) {
@@ -595,3 +850,8 @@ $(document).ready(function(){
         }
     });
 });
+
+function formatNumber(num)
+{
+    return ("" + num).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, function($1) { return $1 + "." });
+}

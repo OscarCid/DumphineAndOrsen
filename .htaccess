@@ -11,4 +11,6 @@ RewriteRule (.*?)index\.php/*(.*) DumphineAndOrsen/$1$2 [R=301,NE,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ DumphineAndOrsen/index.php/$1 [L]
+
+RewriteRule    ^DumphineAndOrsen/LoL/riot\.txt?$    DumphineAndOrsen/asset/src/LoL/riot.txt    [NC,L]    # Handle requests for "pet-care"
 </IfModule>

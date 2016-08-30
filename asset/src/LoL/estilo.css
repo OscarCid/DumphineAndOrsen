@@ -307,6 +307,16 @@ table tbody tr td .summoner-spells {
 }
 
 table tbody tr td span {
+
+}
+
+.texto
+{
     line-height: 28px;
     padding-left: 6px;
+}
+
+.Ratio {
+    display: block;
+    font-weight: bold;
 }
