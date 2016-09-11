@@ -710,6 +710,7 @@ header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Dispo
                 </div>
             </div>
         </div>
+            <iframe src="http://sistema.meteorologiaupla.cl/Clima/Android/webview/iframe.php" height="375" width="220" frameborder="0"></iframe>
         <div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1" style="margin-top:  10px">
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <!-- Responsive -->
